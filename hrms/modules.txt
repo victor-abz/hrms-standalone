@@ -1,2 +1,4 @@
 HR
 Payroll
+Projects
+Setup

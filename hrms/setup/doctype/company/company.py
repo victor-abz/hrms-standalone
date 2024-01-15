@@ -14,9 +14,8 @@ from frappe.desk.page.setup_wizard.setup_wizard import make_records
 from frappe.utils import cint, formatdate, get_timestamp, today
 from frappe.utils.nestedset import NestedSet, rebuild_tree
 
-from erpnext.accounts.doctype.account.account import get_account_currency
-
 from hrms.setup.setup_wizard.operations.taxes_setup import setup_taxes_and_charges
+from hrms.utils import get_account_currency
 
 
 class Company(NestedSet):
@@ -223,7 +222,7 @@ class Company(NestedSet):
         ):
             if not frappe.local.flags.ignore_chart_of_accounts:
                 frappe.flags.country_change = True
-                self.create_default_accounts()
+                # self.create_default_accounts()
                 self.create_default_warehouses()
 
         if not frappe.db.get_value("Cost Center", {"is_group": 0, "company": self.name}):
@@ -231,7 +230,7 @@ class Company(NestedSet):
 
         if frappe.flags.country_change:
             install_country_fixtures(self.name, self.country)
-            self.create_default_tax_template()
+            # self.create_default_tax_template()
 
         if not frappe.db.get_value("Department", {"company": self.name}):
             self.create_default_departments()
@@ -285,28 +284,6 @@ class Company(NestedSet):
                 warehouse.flags.ignore_permissions = True
                 warehouse.flags.ignore_mandatory = True
                 warehouse.insert()
-
-    def create_default_accounts(self):
-        from erpnext.accounts.doctype.account.chart_of_accounts.chart_of_accounts import (
-            create_charts,
-        )
-
-        frappe.local.flags.ignore_root_company_validation = True
-        create_charts(self.name, self.chart_of_accounts, self.existing_company)
-
-        self.db_set(
-            "default_receivable_account",
-            frappe.db.get_value(
-                "Account", {"company": self.name, "account_type": "Receivable", "is_group": 0}
-            ),
-        )
-
-        self.db_set(
-            "default_payable_account",
-            frappe.db.get_value(
-                "Account", {"company": self.name, "account_type": "Payable", "is_group": 0}
-            ),
-        )
 
     def create_default_departments(self):
         records = [

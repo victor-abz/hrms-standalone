@@ -28,8 +28,7 @@ from frappe.utils import (
 from frappe.utils.background_jobs import enqueue
 
 import erpnext
-from erpnext.accounts.utils import get_fiscal_year
-from erpnext.utilities.transaction_base import TransactionBase
+from hrms.utils import get_fiscal_year
 
 from hrms.hr.utils import validate_active_employee
 from hrms.payroll.doctype.additional_salary.additional_salary import get_additional_salaries
@@ -53,6 +52,7 @@ from hrms.payroll.doctype.salary_slip.salary_slip_loan_utils import (
 from hrms.payroll.utils import sanitize_expression
 from hrms.setup.doctype.employee.employee import get_holiday_list_for_employee
 from hrms.utils.holiday_list import get_holiday_dates_between
+from hrms.utils.transaction_base import TransactionBase
 
 # cache keys
 HOLIDAYS_BETWEEN_DATES = "holidays_between_dates"
@@ -173,7 +173,7 @@ class SalarySlip(TransactionBase):
 
     def set_net_total_in_words(self):
         doc_currency = self.currency
-        company_currency = erpnext.get_company_currency(self.company)
+        company_currency = hrms.get_company_currency(self.company)
         total = self.net_pay if self.is_rounding_total_disabled() else self.rounded_total
         base_total = (
             self.base_net_pay if self.is_rounding_total_disabled() else self.base_rounded_total

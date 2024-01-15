@@ -12,14 +12,13 @@ Filters = frappe._dict
 
 
 def execute(filters: Filters = None) -> tuple:
-	is_indian_company = erpnext.get_region(filters.get("company")) == "India"
-	columns = get_columns(is_indian_company)
+	columns = get_columns()
 	data = get_data(filters, is_indian_company)
 
 	return columns, data
 
 
-def get_columns(is_indian_company: bool) -> list[dict]:
+def get_columns() -> list[dict]:
 	columns = [
 		{
 			"label": _("Employee"),
@@ -35,11 +34,6 @@ def get_columns(is_indian_company: bool) -> list[dict]:
 			"width": 160,
 		},
 	]
-
-	if is_indian_company:
-		columns.append(
-			{"label": _("PAN Number"), "fieldname": "pan_number", "fieldtype": "Data", "width": 140}
-		)
 
 	columns += [
 		{"label": _("Income Tax Component"), "fieldname": "it_comp", "fieldtype": "Data", "width": 170},

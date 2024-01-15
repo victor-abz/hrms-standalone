@@ -20,8 +20,6 @@ from frappe.utils import (
     nowdate,
 )
 
-from erpnext.buying.doctype.supplier_scorecard.supplier_scorecard import daterange
-
 import hrms
 from hrms.hr.doctype.leave_block_list.leave_block_list import get_applicable_block_dates
 from hrms.hr.doctype.leave_ledger_entry.leave_ledger_entry import create_leave_ledger_entry
@@ -34,7 +32,7 @@ from hrms.hr.utils import (
 )
 from hrms.mixins.pwa_notifications import PWANotificationsMixin
 from hrms.setup.doctype.employee.employee import get_holiday_list_for_employee
-from hrms.utils import get_employee_email
+from hrms.utils import daterange, get_employee_email
 
 
 class LeaveDayBlockedError(frappe.ValidationError):

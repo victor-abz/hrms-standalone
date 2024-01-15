@@ -4,7 +4,7 @@ app_publisher = "Frappe Technologies Pvt. Ltd."
 app_description = "Modern HR and Payroll Software"
 app_email = "contact@frappe.io"
 app_license = "GNU General Public License (v3)"
-required_apps = ["frappe/erpnext"]
+required_apps = ["frappe"]
 source_link = "http://github.com/frappe/hrms"
 
 
@@ -137,8 +137,8 @@ has_upload_permission = {"Employee": "hrms.setup.doctype.employee.employee.has_u
 override_doctype_class = {
     "Employee": "hrms.overrides.employee_master.EmployeeMaster",
     "Timesheet": "hrms.overrides.employee_timesheet.EmployeeTimesheet",
-    "Payment Entry": "hrms.overrides.employee_payment_entry.EmployeePaymentEntry",
-    "Project": "hrms.overrides.employee_project.EmployeeProject",
+    # "Payment Entry": "hrms.overrides.employee_payment_entry.EmployeePaymentEntry",
+    # "Project": "hrms.overrides.employee_project.EmployeeProject",
 }
 
 # Document Events
