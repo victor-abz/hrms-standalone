@@ -113,7 +113,7 @@ class TestGratuity(FrappeTestCase):
 
         sal_slip = create_salary_slip(employee)
         rule = get_gratuity_rule("Rule Under Limited Contract (UAE)")
-        set_mode_of_payment_account()
+        # set_mode_of_payment_account()
 
         gratuity = create_gratuity(
             expense_account="Payment Account - _TC", mode_of_payment="Cash", employee=employee

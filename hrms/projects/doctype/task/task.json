@@ -9,7 +9,6 @@
  "field_order": [
   "subject",
   "project",
-  "issue",
   "type",
   "color",
   "is_group",
@@ -80,12 +79,6 @@
    "options": "Project",
    "remember_last_selected_value": 1,
    "search_index": 1
-  },
-  {
-   "fieldname": "issue",
-   "fieldtype": "Link",
-   "label": "Issue",
-   "options": "Issue"
   },
   {
    "fieldname": "type",

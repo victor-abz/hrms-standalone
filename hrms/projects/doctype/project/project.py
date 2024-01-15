@@ -13,7 +13,7 @@ from frappe.query_builder.functions import Count, CurDate, Date, Sum, UnixTimest
 from frappe.utils import add_days, flt, get_datetime, get_time, get_url, nowtime, today
 from frappe.utils.user import is_website_user
 
-from erpnext import get_default_company
+from hrms import get_default_company
 
 from hrms.controllers.queries import get_filters_cond
 from hrms.controllers.website_list_for_contact import get_customers_suppliers

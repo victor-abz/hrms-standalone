@@ -23,7 +23,6 @@
   "fuel_qty",
   "price",
   "column_break_15",
-  "supplier",
   "invoice",
   "service_details",
   "service_detail",
@@ -117,12 +116,6 @@
   {
    "fieldname": "column_break_15",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "supplier",
-   "fieldtype": "Link",
-   "label": "Supplier",
-   "options": "Supplier"
   },
   {
    "fieldname": "invoice",

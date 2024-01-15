@@ -41,7 +41,6 @@ class AuthorizationRule(Document):
 			"Purchase Order",
 			"Quotation",
 			"Delivery Note",
-			"Sales Invoice",
 			"Purchase Invoice",
 			"Purchase Receipt",
 		]

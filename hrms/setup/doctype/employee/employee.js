@@ -13,12 +13,12 @@ hrms.setup.EmployeeController = class EmployeeController extends (
       };
     };
     this.frm.fields_dict.reports_to.get_query = function (doc, cdt, cdn) {
-      return { query: 'erpnext.controllers.queries.employee_query' };
+      return { query: 'hrms.controllers.queries.employee_query' };
     };
   }
 
   refresh() {
-    erpnext.toggle_naming_series();
+    hrms.toggle_naming_series();
   }
 
   salutation() {

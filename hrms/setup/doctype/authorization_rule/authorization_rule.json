@@ -9,7 +9,6 @@
  "field_order": [
   "transaction",
   "based_on",
-  "customer_or_item",
   "master_name",
   "column_break_3",
   "company",
@@ -28,17 +27,6 @@
  ],
  "fields": [
   {
-   "fieldname": "transaction",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Transaction",
-   "oldfieldname": "transaction",
-   "oldfieldtype": "Select",
-   "options": "\nSales Order\nPurchase Order\nQuotation\nDelivery Note\nSales Invoice\nPurchase Invoice\nPurchase Receipt",
-   "reqd": 1
-  },
-  {
    "fieldname": "based_on",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -48,23 +36,6 @@
    "oldfieldtype": "Select",
    "options": "\nGrand Total\nAverage Discount\nCustomerwise Discount\nItemwise Discount\nItem Group wise Discount\nNot Applicable",
    "reqd": 1
-  },
-  {
-   "fieldname": "customer_or_item",
-   "fieldtype": "Select",
-   "hidden": 1,
-   "label": "Customer or Item",
-   "options": "Customer\nItem\nItem Group",
-   "read_only": 1
-  },
-  {
-   "fieldname": "master_name",
-   "fieldtype": "Dynamic Link",
-   "in_list_view": 1,
-   "label": "Customer / Item / Item Group",
-   "oldfieldname": "master_name",
-   "oldfieldtype": "Link",
-   "options": "customer_or_item"
   },
   {
    "fieldname": "column_break_3",

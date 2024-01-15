@@ -40,10 +40,6 @@ doctype_js = {
     "Company": "public/js/erpnext/company.js",
     "Department": "public/js/erpnext/department.js",
     "Timesheet": "public/js/erpnext/timesheet.js",
-    "Payment Entry": "public/js/erpnext/payment_entry.js",
-    "Journal Entry": "public/js/erpnext/journal_entry.js",
-    "Delivery Trip": "public/js/erpnext/delivery_trip.js",
-    "Bank Transaction": "public/js/erpnext/bank_transaction.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -167,20 +163,6 @@ doc_events = {
         "on_cancel": "hrms.hr.doctype.expense_claim.expense_claim.update_payment_for_expense_claim",
         "on_update_after_submit": "hrms.hr.doctype.expense_claim.expense_claim.update_payment_for_expense_claim",
     },
-    "Journal Entry": {
-        "validate": "hrms.hr.doctype.expense_claim.expense_claim.validate_expense_claim_in_jv",
-        "on_submit": [
-            "hrms.hr.doctype.expense_claim.expense_claim.update_payment_for_expense_claim",
-            "hrms.hr.doctype.full_and_final_statement.full_and_final_statement.update_full_and_final_statement_status",
-        ],
-        "on_update_after_submit": "hrms.hr.doctype.expense_claim.expense_claim.update_payment_for_expense_claim",
-        "on_cancel": [
-            "hrms.hr.doctype.expense_claim.expense_claim.update_payment_for_expense_claim",
-            "hrms.payroll.doctype.salary_slip.salary_slip.unlink_ref_doc_from_salary_slip",
-            "hrms.hr.doctype.full_and_final_statement.full_and_final_statement.update_full_and_final_statement_status",
-        ],
-    },
-    "Loan": {"validate": "hrms.hr.utils.validate_loan_repay_from_salary"},
     "Employee": {
         "validate": "hrms.overrides.employee_master.validate_onboarding_process",
         "on_update": [
@@ -232,12 +214,6 @@ invoice_doctypes = ["Expense Claim"]
 
 period_closing_doctypes = ["Payroll Entry"]
 
-accounting_dimension_doctypes = [
-    "Expense Claim",
-    "Expense Claim Detail",
-    "Expense Taxes and Charges",
-    "Payroll Entry",
-]
 
 bank_reconciliation_doctypes = ["Expense Claim"]
 
@@ -252,12 +228,7 @@ before_tests = "hrms.tests.test_utils.before_tests"
 # get matching queries for Bank Reconciliation
 get_matching_queries = "hrms.hr.utils.get_matching_queries"
 
-regional_overrides = {
-    "India": {
-        "hrms.hr.utils.calculate_annual_eligible_hra_exemption": "hrms.regional.india.utils.calculate_annual_eligible_hra_exemption",
-        "hrms.hr.utils.calculate_hra_exemption_for_period": "hrms.regional.india.utils.calculate_hra_exemption_for_period",
-    },
-}
+
 
 # ERPNext doctypes for Global Search
 global_search_doctypes = {

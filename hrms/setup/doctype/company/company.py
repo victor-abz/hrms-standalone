@@ -112,7 +112,6 @@ class Company(NestedSet):
     def check_if_transactions_exist(self):
         exists = False
         for doctype in [
-            "Sales Invoice",
             "Delivery Note",
             "Sales Order",
             "Quotation",
@@ -225,8 +224,8 @@ class Company(NestedSet):
                 # self.create_default_accounts()
                 self.create_default_warehouses()
 
-        if not frappe.db.get_value("Cost Center", {"is_group": 0, "company": self.name}):
-            self.create_default_cost_center()
+        # if not frappe.db.get_value("Cost Center", {"is_group": 0, "company": self.name}):
+        #     self.create_default_cost_center()
 
         if frappe.flags.country_change:
             install_country_fixtures(self.name, self.country)
@@ -237,8 +236,8 @@ class Company(NestedSet):
 
         if not frappe.local.flags.ignore_chart_of_accounts:
             self.set_default_accounts()
-            if self.default_cash_account:
-                self.set_mode_of_payment_account()
+            # if self.default_cash_account:
+            #     self.set_mode_of_payment_account()
 
         if self.default_currency:
             frappe.db.set_value("Currency", self.default_currency, "enabled", 1)
@@ -532,49 +531,6 @@ class Company(NestedSet):
         if account:
             self.db_set(fieldname, account)
 
-    def set_mode_of_payment_account(self):
-        cash = frappe.db.get_value("Mode of Payment", {"type": "Cash"}, "name")
-        if (
-            cash
-            and self.default_cash_account
-            and not frappe.db.get_value(
-                "Mode of Payment Account", {"company": self.name, "parent": cash}
-            )
-        ):
-            mode_of_payment = frappe.get_doc("Mode of Payment", cash, for_update=True)
-            mode_of_payment.append(
-                "accounts", {"company": self.name, "default_account": self.default_cash_account}
-            )
-            mode_of_payment.save(ignore_permissions=True)
-
-    def create_default_cost_center(self):
-        cc_list = [
-            {
-                "cost_center_name": self.name,
-                "company": self.name,
-                "is_group": 1,
-                "parent_cost_center": None,
-            },
-            {
-                "cost_center_name": _("Main"),
-                "company": self.name,
-                "is_group": 0,
-                "parent_cost_center": self.name + " - " + self.abbr,
-            },
-        ]
-        for cc in cc_list:
-            cc.update({"doctype": "Cost Center"})
-            cc_doc = frappe.get_doc(cc)
-            cc_doc.flags.ignore_permissions = True
-
-            if cc.get("cost_center_name") == self.name:
-                cc_doc.flags.ignore_mandatory = True
-            cc_doc.insert()
-
-        self.db_set("cost_center", _("Main") + " - " + self.abbr)
-        self.db_set("round_off_cost_center", _("Main") + " - " + self.abbr)
-        self.db_set("depreciation_cost_center", _("Main") + " - " + self.abbr)
-
     def after_rename(self, olddn, newdn, merge=False):
         self.db_set("company_name", newdn)
 
@@ -612,8 +568,6 @@ class Company(NestedSet):
             frappe.db.sql("""delete from `tabWarehouse` where company=%s""", self.name)
 
         frappe.defaults.clear_default("company", value=self.name)
-        for doctype in ["Mode of Payment Account", "Item Default"]:
-            frappe.db.sql("delete from `tab{0}` where company = %s".format(doctype), self.name)
 
         # clear default accounts, warehouses from item
         warehouses = frappe.db.sql_list(

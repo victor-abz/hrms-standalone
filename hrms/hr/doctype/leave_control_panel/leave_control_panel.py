@@ -7,7 +7,7 @@ from frappe import _, msgprint
 from frappe.model.document import Document
 from frappe.utils import cint, comma_and, flt
 
-from erpnext import get_default_company
+from hrms import get_default_company
 
 
 class LeaveControlPanel(Document):

@@ -4,9 +4,12 @@ from collections.abc import Generator
 from datetime import timedelta
 
 import requests
+from pypika import Order
+from pypika.terms import ExistsCriterion
 
 import frappe
 from frappe import _
+from frappe.query_builder.utils import DocType
 from frappe.utils import (
     add_days,
     add_months,
@@ -255,3 +258,115 @@ def get_account_currency(account):
         return account_currency
 
     return frappe.local_cache("account_currency", account, generator)
+
+
+@frappe.whitelist()
+def get_fiscal_year(
+    date=None,
+    fiscal_year=None,
+    label="Date",
+    verbose=1,
+    company=None,
+    as_dict=False,
+    boolean=False,
+):
+    if isinstance(boolean, str):
+        boolean = frappe.json.loads(boolean)
+
+    fiscal_years = get_fiscal_years(
+        date, fiscal_year, label, verbose, company, as_dict=as_dict, boolean=boolean
+    )
+    if boolean:
+        return fiscal_years
+    else:
+        return fiscal_years[0]
+
+
+def get_fiscal_years(
+    transaction_date=None,
+    fiscal_year=None,
+    label="Date",
+    verbose=1,
+    company=None,
+    as_dict=False,
+    boolean=False,
+):
+    fiscal_years = frappe.cache().hget("fiscal_years", company) or []
+
+    if not fiscal_years:
+        # if year start date is 2012-04-01, year end date should be 2013-03-31 (hence subdate)
+        FY = DocType("Fiscal Year")
+
+        query = (
+            frappe.qb.from_(FY)
+            .select(FY.name, FY.year_start_date, FY.year_end_date)
+            .where(FY.disabled == 0)
+        )
+
+        if fiscal_year:
+            query = query.where(FY.name == fiscal_year)
+
+        if company:
+            FYC = DocType("Fiscal Year Company")
+            query = query.where(
+                ExistsCriterion(
+                    frappe.qb.from_(FYC).select(FYC.name).where(FYC.parent == FY.name)
+                ).negate()
+                | ExistsCriterion(
+                    frappe.qb.from_(FYC)
+                    .select(FYC.company)
+                    .where(FYC.parent == FY.name)
+                    .where(FYC.company == company)
+                )
+            )
+
+        query = query.orderby(FY.year_start_date, order=Order.desc)
+        fiscal_years = query.run(as_dict=True)
+
+        frappe.cache().hset("fiscal_years", company, fiscal_years)
+
+    if not transaction_date and not fiscal_year:
+        return fiscal_years
+
+    if transaction_date:
+        transaction_date = getdate(transaction_date)
+
+    for fy in fiscal_years:
+        matched = False
+        if fiscal_year and fy.name == fiscal_year:
+            matched = True
+
+        if (
+            transaction_date
+            and getdate(fy.year_start_date) <= transaction_date
+            and getdate(fy.year_end_date) >= transaction_date
+        ):
+            matched = True
+
+        if matched:
+            if as_dict:
+                return (fy,)
+            else:
+                return ((fy.name, fy.year_start_date, fy.year_end_date),)
+
+    error_msg = _("""{0} {1} is not in any active Fiscal Year""").format(
+        label, formatdate(transaction_date)
+    )
+    if company:
+        error_msg = _("""{0} for {1}""").format(error_msg, frappe.bold(company))
+
+    if boolean:
+        return False
+
+    if verbose == 1:
+        frappe.msgprint(error_msg)
+
+    raise FiscalYearError(error_msg)
+
+
+class FiscalYearError(frappe.ValidationError):
+    pass
+
+
+class PaymentEntryUnlinkError(frappe.ValidationError):
+    pass

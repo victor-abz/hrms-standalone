@@ -26,21 +26,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "loan_account",
-   "fieldtype": "Link",
-   "label": "Loan Account",
-   "options": "Account",
-   "read_only": 1
-  },
-  {
-   "fieldname": "interest_income_account",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Interest Income Account",
-   "options": "Account",
-   "read_only": 1
-  },
-  {
    "fieldname": "column_break_4",
    "fieldtype": "Column Break"
   },

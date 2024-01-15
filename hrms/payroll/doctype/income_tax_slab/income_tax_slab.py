@@ -5,7 +5,7 @@
 from frappe.model.document import Document
 
 # import frappe
-import erpnext
+import frappe
 
 
 class IncomeTaxSlab(Document):

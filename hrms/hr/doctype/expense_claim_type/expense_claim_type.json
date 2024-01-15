@@ -10,7 +10,6 @@
  "field_order": [
   "deferred_expense_account",
   "expense_type",
-  "accounts",
   "description"
  ],
  "fields": [
@@ -31,18 +30,6 @@
    "oldfieldname": "description",
    "oldfieldtype": "Small Text",
    "width": "300px"
-  },
-  {
-   "fieldname": "accounts",
-   "fieldtype": "Table",
-   "label": "Accounts",
-   "options": "Expense Claim Account"
-  },
-  {
-   "default": "0",
-   "fieldname": "deferred_expense_account",
-   "fieldtype": "Check",
-   "label": "Deferred Expense Account"
   }
  ],
  "icon": "fa fa-flag",

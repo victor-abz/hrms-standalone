@@ -5,7 +5,6 @@
 import frappe
 from frappe import _
 
-import erpnext
 
 from hrms.payroll.report.provident_fund_deductions.provident_fund_deductions import get_conditions
 

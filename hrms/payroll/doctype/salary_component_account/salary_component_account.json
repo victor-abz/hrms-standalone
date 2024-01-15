@@ -15,14 +15,6 @@
    "in_list_view": 1,
    "label": "Company",
    "options": "Company"
-  },
-  {
-   "description": "Default Bank / Cash account will be automatically updated in Salary Journal Entry when this mode is selected.",
-   "fieldname": "account",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Account",
-   "options": "Account"
   }
  ],
  "istable": 1,

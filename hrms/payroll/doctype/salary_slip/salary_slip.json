@@ -92,7 +92,6 @@
   "future_income_tax_deductions",
   "total_income_tax",
   "section_break_75",
-  "journal_entry",
   "amended_from",
   "column_break_ieob",
   "bank_name",
@@ -172,12 +171,6 @@
    "label": "Status",
    "options": "Draft\nSubmitted\nCancelled",
    "read_only": 1
-  },
-  {
-   "fieldname": "journal_entry",
-   "fieldtype": "Link",
-   "label": "Journal Entry",
-   "options": "Journal Entry"
   },
   {
    "fieldname": "payroll_entry",
@@ -377,12 +370,6 @@
    "oldfieldtype": "Data",
    "options": "Salary Slip",
    "print_hide": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "mode_of_payment",
-   "fieldtype": "Select",
-   "label": "Mode Of Payment",
    "read_only": 1
   },
   {

@@ -26,17 +26,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "columns": 2,
-   "fieldname": "account_head",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Account Head",
-   "oldfieldname": "account_head",
-   "oldfieldtype": "Link",
-   "options": "Account",
-   "reqd": 1
-  },
-  {
    "default": ":Company",
    "fieldname": "cost_center",
    "fieldtype": "Link",

@@ -78,11 +78,6 @@
   },
   {
    "group": "Accounts",
-   "link_doctype": "Sales Invoice",
-   "link_fieldname": "incoterm"
-  },
-  {
-   "group": "Accounts",
    "link_doctype": "Purchase Invoice",
    "link_fieldname": "incoterm"
   }

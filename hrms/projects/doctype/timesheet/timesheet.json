@@ -11,7 +11,6 @@
   "title",
   "naming_series",
   "company",
-  "customer",
   "currency",
   "exchange_rate",
   "sales_invoice",
@@ -70,15 +69,6 @@
    "label": "Company",
    "options": "Company",
    "remember_last_selected_value": 1
-  },
-  {
-   "fieldname": "sales_invoice",
-   "fieldtype": "Link",
-   "label": "Sales Invoice",
-   "no_copy": 1,
-   "options": "Sales Invoice",
-   "print_hide": 1,
-   "read_only": 1
   },
   {
    "fieldname": "column_break_3",
@@ -263,20 +253,6 @@
    "fieldtype": "Link",
    "label": "Project",
    "options": "Project"
-  },
-  {
-   "fieldname": "customer",
-   "fieldtype": "Link",
-   "label": "Customer",
-   "options": "Customer"
-  },
-  {
-   "fetch_from": "customer.default_currency",
-   "fetch_if_empty": 1,
-   "fieldname": "currency",
-   "fieldtype": "Link",
-   "label": "Currency",
-   "options": "Currency"
   },
   {
    "fieldname": "base_total_costing_amount",

@@ -75,13 +75,6 @@
    "width": "120px"
   },
   {
-   "fieldname": "advance_account",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Advance Account",
-   "options": "Account"
-  },
-  {
    "fieldname": "column_break_4",
    "fieldtype": "Column Break"
   }

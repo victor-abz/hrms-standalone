@@ -1,7 +1,7 @@
 // Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 // License: GNU General Public License v3. See license.txt
 
-frappe.provide('erpnext.company');
+frappe.provide('hrms.company');
 
 frappe.ui.form.on('Company', {
   onload: function (frm) {
@@ -24,7 +24,7 @@ frappe.ui.form.on('Company', {
   },
   setup: function (frm) {
     frm.__rename_queue = 'long';
-    erpnext.company.setup_queries(frm);
+    hrms.company.setup_queries(frm);
 
     frm.set_query('parent_company', function () {
       return {
@@ -160,7 +160,7 @@ frappe.ui.form.on('Company', {
       }
     }
 
-    erpnext.company.set_chart_of_accounts_options(frm.doc);
+    // hrms.company.set_chart_of_accounts_options(frm.doc);
   },
 
   make_default_tax_template: function (frm) {
@@ -177,7 +177,7 @@ frappe.ui.form.on('Company', {
   },
 
   country: function (frm) {
-    erpnext.company.set_chart_of_accounts_options(frm.doc);
+    // hrms.company.set_chart_of_accounts_options(frm.doc);
   },
 
   delete_company_transactions: function (frm) {
@@ -225,31 +225,7 @@ frappe.ui.form.on('Company', {
   },
 });
 
-erpnext.company.set_chart_of_accounts_options = function (doc) {
-  var selected_value = doc.chart_of_accounts;
-  if (doc.country) {
-    return frappe.call({
-      method:
-        'erpnext.accounts.doctype.account.chart_of_accounts.chart_of_accounts.get_charts_for_country',
-      args: {
-        country: doc.country,
-        with_standard: true,
-      },
-      callback: function (r) {
-        if (!r.exc) {
-          set_field_options(
-            'chart_of_accounts',
-            [''].concat(r.message).join('\n')
-          );
-          if (in_list(r.message, selected_value))
-            cur_frm.set_value('chart_of_accounts', selected_value);
-        }
-      },
-    });
-  }
-};
-
-erpnext.company.setup_queries = function (frm) {
+hrms.company.setup_queries = function (frm) {
   $.each(
     [
       ['default_bank_account', { account_type: 'Bank' }],
@@ -322,7 +298,7 @@ erpnext.company.setup_queries = function (frm) {
       ],
     ],
     function (i, v) {
-      erpnext.company.set_custom_query(frm, v);
+      hrms.company.set_custom_query(frm, v);
     }
   );
 
@@ -356,13 +332,13 @@ erpnext.company.setup_queries = function (frm) {
         ],
       ],
       function (i, v) {
-        erpnext.company.set_custom_query(frm, v);
+        hrms.company.set_custom_query(frm, v);
       }
     );
   }
 };
 
-erpnext.company.set_custom_query = function (frm, v) {
+hrms.company.set_custom_query = function (frm, v) {
   var filters = {
     company: frm.doc.name,
     is_group: 0,

@@ -27,7 +27,6 @@ from frappe.utils import (
 )
 from frappe.utils.background_jobs import enqueue
 
-import erpnext
 from hrms.utils import get_fiscal_year
 
 from hrms.hr.utils import validate_active_employee

@@ -8,7 +8,7 @@ from frappe.model.mapper import get_mapped_doc
 from frappe.utils import flt
 
 from hrms.hr.utils import (
-	calculate_annual_eligible_hra_exemption,
+	# calculate_annual_eligible_hra_exemption,
 	get_total_exemption_amount,
 	validate_active_employee,
 	validate_duplicate_exemption_for_payroll_period,
@@ -40,7 +40,7 @@ class EmployeeTaxExemptionDeclaration(Document):
 	def calculate_hra_exemption(self):
 		self.salary_structure_hra, self.annual_hra_exemption, self.monthly_hra_exemption = 0, 0, 0
 		if self.get("monthly_house_rent"):
-			hra_exemption = calculate_annual_eligible_hra_exemption(self)
+			hra_exemption = None
 			if hra_exemption:
 				self.total_exemption_amount += hra_exemption["annual_exemption"]
 				self.total_exemption_amount = flt(

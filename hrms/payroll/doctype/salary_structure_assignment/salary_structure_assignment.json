@@ -149,13 +149,6 @@
    "reqd": 1
   },
   {
-   "depends_on": "employee",
-   "fieldname": "payroll_payable_account",
-   "fieldtype": "Link",
-   "label": "Payroll Payable Account",
-   "options": "Account"
-  },
-  {
    "collapsible": 1,
    "depends_on": "employee",
    "fieldname": "section_break_17",

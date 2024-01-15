@@ -22,7 +22,6 @@ from frappe.utils import (
     getdate,
 )
 
-import erpnext
 from hrms.utils import get_fiscal_year
 
 from hrms.utils import get_accounting_dimensions
@@ -572,59 +571,59 @@ class PayrollEntry(Document):
                 employee_wise_accounting_enabled,
             )
 
-            self.make_journal_entry(
-                accounts,
-                currencies,
-                self.payroll_payable_account,
-                voucher_type="Journal Entry",
-                user_remark=_("Accrual Journal Entry for salaries from {0} to {1}").format(
-                    self.start_date, self.end_date
-                ),
-                submit_journal_entry=True,
-                submitted_salary_slips=submitted_salary_slips,
-            )
+    #         self.make_journal_entry(
+    #             accounts,
+    #             currencies,
+    #             self.payroll_payable_account,
+    #             voucher_type="Journal Entry",
+    #             user_remark=_("Accrual Journal Entry for salaries from {0} to {1}").format(
+    #                 self.start_date, self.end_date
+    #             ),
+    #             submit_journal_entry=True,
+    #             submitted_salary_slips=submitted_salary_slips,
+    #         )
 
-    def make_journal_entry(
-        self,
-        accounts,
-        currencies,
-        payroll_payable_account=None,
-        voucher_type="Journal Entry",
-        user_remark="",
-        submitted_salary_slips: list = None,
-        submit_journal_entry=False,
-    ):
-        multi_currency = 0
-        if len(currencies) > 1:
-            multi_currency = 1
+    # def make_journal_entry(
+    #     self,
+    #     accounts,
+    #     currencies,
+    #     payroll_payable_account=None,
+    #     voucher_type="Journal Entry",
+    #     user_remark="",
+    #     submitted_salary_slips: list = None,
+    #     submit_journal_entry=False,
+    # ):
+    #     multi_currency = 0
+    #     if len(currencies) > 1:
+    #         multi_currency = 1
 
-        journal_entry = frappe.new_doc("Journal Entry")
-        journal_entry.voucher_type = voucher_type
-        journal_entry.user_remark = user_remark
-        journal_entry.company = self.company
-        journal_entry.posting_date = self.posting_date
+    #     journal_entry = frappe.new_doc("Journal Entry")
+    #     journal_entry.voucher_type = voucher_type
+    #     journal_entry.user_remark = user_remark
+    #     journal_entry.company = self.company
+    #     journal_entry.posting_date = self.posting_date
 
-        journal_entry.set("accounts", accounts)
-        journal_entry.multi_currency = multi_currency
+    #     journal_entry.set("accounts", accounts)
+    #     journal_entry.multi_currency = multi_currency
 
-        if voucher_type == "Journal Entry":
-            journal_entry.title = payroll_payable_account
+    #     if voucher_type == "Journal Entry":
+    #         journal_entry.title = payroll_payable_account
 
-        journal_entry.save(ignore_permissions=True)
+    #     journal_entry.save(ignore_permissions=True)
 
-        try:
-            if submit_journal_entry:
-                journal_entry.submit()
+    #     try:
+    #         if submit_journal_entry:
+    #             journal_entry.submit()
 
-            if submitted_salary_slips:
-                self.update_salary_slip_status(submitted_salary_slips, jv_name=journal_entry.name)
+    #         if submitted_salary_slips:
+    #             self.update_salary_slip_status(submitted_salary_slips, jv_name=journal_entry.name)
 
-        except Exception as e:
-            if type(e) in (str, list, tuple):
-                frappe.msgprint(e)
+    #     except Exception as e:
+    #         if type(e) in (str, list, tuple):
+    #             frappe.msgprint(e)
 
-            self.log_error("Journal Entry creation against Salary Slip failed")
-            raise
+    #         self.log_error("Journal Entry creation against Salary Slip failed")
+    #         raise
 
     def get_payable_amount_for_earnings_and_deductions(
         self,
