@@ -8,9 +8,6 @@ on:
       - "**.md"
       - "**.html"
       - "**.csv"
-  schedule:
-    # Run everday at midnight UTC / 5:30 IST
-    - cron: "0 0 * * *"
 env:
     HR_BRANCH: ${{ github.base_ref || github.ref_name }}
 
