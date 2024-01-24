@@ -14,8 +14,8 @@ from frappe.desk.doctype.global_search_settings.global_search_settings import (
 from frappe.desk.page.setup_wizard.setup_wizard import make_records
 from frappe.utils import cstr, getdate
 
-from erpnext.accounts.doctype.account.account import RootNotEditable
-from erpnext.regional.address_template.setup import set_up_address_templates
+# from hrms.accounts.doctype.account.account import RootNotEditable
+# from hrms.regional.address_template.setup import set_up_address_templates
 
 
 def read_lines(filename: str) -> list[str]:
@@ -228,7 +228,7 @@ def install(country=None):
 
     make_default_records()
     make_records(records)
-    set_up_address_templates(default_country=country)
+    # set_up_address_templates(default_country=country)
     update_selling_defaults()
     update_buying_defaults()
     add_uom_data()
@@ -392,10 +392,9 @@ def install_defaults(args=None):  # nosemgrep
     frappe.db.set_single_value("Stock Settings", "email_footer_address", args.get("company_name"))
 
     set_global_defaults(args)
-    update_stock_settings()
 
     args.update({"set_default": 1})
-    create_bank_account(args)
+    # create_bank_account(args)
 
 
 def set_global_defaults(args):

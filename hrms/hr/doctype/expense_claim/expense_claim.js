@@ -2,14 +2,14 @@
 // License: GNU General Public License v3. See license.txt
 
 frappe.provide('hrms.hr');
-// frappe.provide('erpnext.accounts.dimensions');
+// frappe.provide('hrms.accounts.dimensions');
 
 frappe.ui.form.on('Expense Claim', {
   // onload: function (frm) {
-  //   erpnext.accounts.dimensions.setup_dimension_filters(frm, frm.doctype);
+  //   hrms.accounts.dimensions.setup_dimension_filters(frm, frm.doctype);
   // },
   // company: function (frm) {
-  //   erpnext.accounts.dimensions.update_dimension(frm, frm.doctype);
+  //   hrms.accounts.dimensions.update_dimension(frm, frm.doctype);
   //   var expenses = frm.doc.expenses;
   //   for (var i = 0; i < expenses.length; i++) {
   //     var expense = expenses[i];
@@ -401,7 +401,7 @@ frappe.ui.form.on('Expense Claim Detail', {
 //   },
 
 //   cost_center: function (frm, cdt, cdn) {
-//     erpnext.utils.copy_value_in_all_rows(
+//     hrms.utils.copy_value_in_all_rows(
 //       frm.doc,
 //       cdt,
 //       cdn,

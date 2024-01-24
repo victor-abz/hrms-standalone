@@ -20,10 +20,6 @@
    "width": "Half"
   },
   {
-   "chart": "Employee Advance Status",
-   "width": "Half"
-  },
-  {
    "chart": "Department wise Expense Claims",
    "width": "Full"
   }

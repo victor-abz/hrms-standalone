@@ -3,7 +3,7 @@
 
 var in_progress = false;
 
-// frappe.provide('erpnext.accounts.dimensions');
+// frappe.provide('hrms.accounts.dimensions');
 
 frappe.ui.form.on('Payroll Entry', {
   onload: function (frm) {

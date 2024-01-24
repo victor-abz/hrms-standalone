@@ -36,7 +36,6 @@ app_include_css = "hrms.bundle.css"
 
 # include js in doctype views
 doctype_js = {
-    "Employee": "public/js/erpnext/employee.js",
     "Company": "public/js/erpnext/company.js",
     "Department": "public/js/erpnext/department.js",
     "Timesheet": "public/js/erpnext/timesheet.js",
@@ -147,10 +146,9 @@ doc_events = {
         "on_update": "hrms.setup.doctype.employee.employee.update_user_permissions",
     },
     "Company": {
-        "validate": "hrms.overrides.company.validate_default_accounts",
         "on_update": [
             "hrms.overrides.company.make_company_fixtures",
-            "hrms.overrides.company.set_default_hr_accounts",
+            # "hrms.overrides.company.set_default_hr_accounts",
         ],
     },
     "Holiday List": {
@@ -208,7 +206,7 @@ scheduler_events = {
     "monthly": ["hrms.controllers.employee_reminders.send_reminders_in_advance_monthly"],
 }
 
-advance_payment_doctypes = ["Gratuity", "Employee Advance"]
+# advance_payment_doctypes = ["Gratuity", "Employee Advance"]
 
 invoice_doctypes = ["Expense Claim"]
 
@@ -227,7 +225,6 @@ before_tests = "hrms.tests.test_utils.before_tests"
 
 # get matching queries for Bank Reconciliation
 get_matching_queries = "hrms.hr.utils.get_matching_queries"
-
 
 
 # ERPNext doctypes for Global Search

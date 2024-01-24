@@ -17,14 +17,10 @@ frappe.ui.form.on('Company', {
         }
       );
     }
-
-    frm.call('check_if_transactions_exist').then((r) => {
-      frm.toggle_enable('default_currency', !r.message);
-    });
   },
   setup: function (frm) {
     frm.__rename_queue = 'long';
-    hrms.company.setup_queries(frm);
+    // hrms.company.setup_queries(frm);
 
     frm.set_query('parent_company', function () {
       return {
@@ -32,23 +28,6 @@ frappe.ui.form.on('Company', {
       };
     });
 
-    frm.set_query('default_selling_terms', function () {
-      return { filters: { selling: 1 } };
-    });
-
-    frm.set_query('default_buying_terms', function () {
-      return { filters: { buying: 1 } };
-    });
-
-    frm.set_query('default_in_transit_warehouse', function () {
-      return {
-        filters: {
-          warehouse_type: 'Transit',
-          is_group: 0,
-          company: frm.doc.company_name,
-        },
-      };
-    });
   },
 
   company_name: function (frm) {
@@ -69,7 +48,6 @@ frappe.ui.form.on('Company', {
       bool ? 'Existing Company' : ''
     );
     frm.set_value('existing_company', bool ? frm.doc.parent_company : '');
-    disbale_coa_fields(frm, bool);
   },
 
   date_of_commencement: function (frm) {
@@ -88,7 +66,6 @@ frappe.ui.form.on('Company', {
 
     if (!frm.is_new()) {
       frm.doc.abbr && frm.set_df_property('abbr', 'read_only', 1);
-      disbale_coa_fields(frm);
       frappe.contacts.render_address_and_contact(frm);
 
       if (frappe.perm.has_perm('Cost Center', 0, 'read')) {
@@ -159,8 +136,6 @@ frappe.ui.form.on('Company', {
         }
       }
     }
-
-    // hrms.company.set_chart_of_accounts_options(frm.doc);
   },
 
   make_default_tax_template: function (frm) {
@@ -174,10 +149,6 @@ frappe.ui.form.on('Company', {
         );
       },
     });
-  },
-
-  country: function (frm) {
-    // hrms.company.set_chart_of_accounts_options(frm.doc);
   },
 
   delete_company_transactions: function (frm) {
@@ -269,10 +240,6 @@ hrms.company.setup_queries = function (frm) {
       ['round_off_cost_center', {}],
       ['depreciation_cost_center', {}],
       [
-        'expenses_included_in_asset_valuation',
-        { account_type: 'Expenses Included In Asset Valuation' },
-      ],
-      [
         'capital_work_in_progress_account',
         { account_type: 'Capital Work in Progress' },
       ],
@@ -308,13 +275,6 @@ hrms.company.setup_queries = function (frm) {
         [
           'stock_adjustment_account',
           { root_type: 'Expense', account_type: 'Stock Adjustment' },
-        ],
-        [
-          'expenses_included_in_valuation',
-          {
-            root_type: 'Expense',
-            account_type: 'Expenses Included in Valuation',
-          },
         ],
         [
           'stock_received_but_not_billed',
@@ -353,10 +313,4 @@ hrms.company.set_custom_query = function (frm, v) {
       filters: filters,
     };
   });
-};
-
-var disbale_coa_fields = function (frm, bool = true) {
-  frm.set_df_property('create_chart_of_accounts_based_on', 'read_only', bool);
-  frm.set_df_property('chart_of_accounts', 'read_only', bool);
-  frm.set_df_property('existing_company', 'read_only', bool);
 };

@@ -62,7 +62,7 @@ Frappe HR has everything you need to drive excellence within the company. It's a
 ## Learning and Community
 
 1. [Documentation](https://frappehr.com/docs) - Extensive documentation for Frappe HR.
-2. [User Forum](https://discuss.erpnext.com/) - Engage with the community of ERPNext users and service providers.
+2. [User Forum](https://discuss.hrms.com/) - Engage with the community of ERPNext users and service providers.
 3. [Telegram Group](https://t.me/frappehr) - Get instant help from the community of users.
 
 ## Contribute

@@ -6,7 +6,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "employee_advance",
   "posting_date",
   "advance_paid",
   "column_break_4",
@@ -15,20 +14,6 @@
   "advance_account"
  ],
  "fields": [
-  {
-   "columns": 2,
-   "fieldname": "employee_advance",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Employee Advance",
-   "no_copy": 1,
-   "oldfieldname": "journal_voucher",
-   "oldfieldtype": "Link",
-   "options": "Employee Advance",
-   "print_width": "250px",
-   "reqd": 1,
-   "width": "250px"
-  },
   {
    "columns": 2,
    "fieldname": "posting_date",

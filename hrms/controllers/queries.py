@@ -13,7 +13,7 @@ from frappe.utils import nowdate, today, unique
 
 import hrms
 
-# from erpnext.stock.get_item_details import _get_item_tax_template
+# from hrms.stock.get_item_details import _get_item_tax_template
 
 
 # searches for active employees
@@ -658,7 +658,7 @@ def get_filtered_dimensions(
     doctype, txt, searchfield, start, page_len, filters, reference_doctype=None
 ):
     pass
-    # from erpnext.accounts.doctype.accounting_dimension_filter.accounting_dimension_filter import (
+    # from hrms.accounts.doctype.accounting_dimension_filter.accounting_dimension_filter import (
     #     get_dimension_filter_map,
     # )
 

@@ -7,7 +7,7 @@ from frappe.utils import add_days, flt, get_datetime_str, nowdate
 from frappe.utils.data import now_datetime
 from frappe.utils.nestedset import get_ancestors_of, get_root_of  # noqa
 
-from erpnext import get_default_company
+from hrms import get_default_company
 
 
 def before_tests():

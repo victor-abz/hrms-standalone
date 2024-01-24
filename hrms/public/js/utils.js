@@ -19,15 +19,6 @@ $.extend(hrms, {
     }
   },
 
-  toggle_naming_series: function () {
-    if (cur_frm.fields_dict.naming_series) {
-      cur_frm.toggle_display(
-        'naming_series',
-        cur_frm.doc.__islocal ? true : false
-      );
-    }
-  },
-
   get_current_employee: async (frm) => {
     const employee = (
       await frappe.db.get_value(
