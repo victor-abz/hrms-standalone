@@ -6,8 +6,8 @@ from frappe.tests.utils import FrappeTestCase
 
 from hrms.hr.doctype.job_opening.test_job_opening import get_job_opening
 from hrms.hr.doctype.job_requisition.job_requisition import make_job_opening
-from hrms.setup.doctype.designation.test_designation import create_designation
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.designation.test_designation import create_designation
+from basic.setup.doctype.employee.test_employee import make_employee
 
 
 class TestJobRequisition(FrappeTestCase):

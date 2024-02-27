@@ -11,7 +11,7 @@ from frappe.utils import add_days, cstr, date_diff, getdate
 from frappe.utils.csvutils import UnicodeWriter
 
 from hrms.hr.utils import get_holiday_dates_for_employee
-from hrms.setup.doctype.employee.employee import get_holiday_list_for_employee
+from basic.setup.doctype.employee.employee import get_holiday_list_for_employee
 
 
 class UploadAttendance(Document):

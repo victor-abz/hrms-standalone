@@ -10,7 +10,7 @@ from hrms.payroll.doctype.salary_slip.test_salary_slip import (
 )
 from hrms.payroll.doctype.salary_structure.test_salary_structure import make_salary_structure
 from hrms.payroll.report.income_tax_deductions.income_tax_deductions import execute
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.employee.test_employee import make_employee
 
 
 class TestIncomeTaxDeductions(FrappeTestCase):

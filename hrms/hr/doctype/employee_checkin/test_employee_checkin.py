@@ -23,8 +23,8 @@ from hrms.hr.doctype.employee_checkin.employee_checkin import (
 from hrms.hr.doctype.leave_application.test_leave_application import get_first_sunday
 from hrms.hr.doctype.shift_type.test_shift_type import make_shift_assignment, setup_shift_type
 from hrms.payroll.doctype.salary_slip.test_salary_slip import make_holiday_list
-from hrms.setup.doctype.employee.test_employee import make_employee
-from hrms.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
+from basic.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
 
 
 class TestEmployeeCheckin(FrappeTestCase):

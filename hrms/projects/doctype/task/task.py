@@ -316,7 +316,7 @@ def check_if_child_exists(name):
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def get_project(doctype, txt, searchfield, start, page_len, filters):
-    from hrms.controllers.queries import get_match_cond
+    from basic.controllers.queries import get_match_cond
 
     meta = frappe.get_meta(doctype)
     searchfields = meta.get_search_fields()

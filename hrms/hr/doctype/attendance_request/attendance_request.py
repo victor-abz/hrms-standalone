@@ -8,7 +8,7 @@ from frappe.model.document import Document
 from frappe.utils import add_days, date_diff, format_date, get_link_to_form, getdate
 
 from hrms.hr.utils import validate_active_employee, validate_dates
-from hrms.setup.doctype.employee.employee import is_holiday
+from basic.setup.doctype.employee.employee import is_holiday
 
 
 class OverlappingAttendanceRequestError(frappe.ValidationError):

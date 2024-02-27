@@ -15,8 +15,8 @@ from hrms.payroll.doctype.salary_slip.test_salary_slip import (
 )
 from hrms.payroll.doctype.salary_structure.salary_structure import make_salary_slip
 from hrms.regional.united_arab_emirates.setup import setup
-from hrms.setup.doctype.employee.test_employee import make_employee
-from hrms.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
+from basic.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
 
 test_dependencies = ["Salary Component", "Salary Slip", "Account"]
 

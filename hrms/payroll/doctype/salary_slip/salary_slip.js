@@ -37,7 +37,7 @@ frappe.ui.form.on('Salary Slip', {
 
     frm.set_query('employee', function () {
       return {
-        query: 'hrms.controllers.queries.employee_query',
+        query: 'basic.controllers.queries.employee_query',
         filters: {
           company: frm.doc.company,
         },
@@ -111,7 +111,7 @@ frappe.ui.form.on('Salary Slip', {
         if (from_currency != company_currency) {
           frm.events.hide_loan_section(frm);
           frappe.call({
-            method: 'hrms.setup.utils.get_exchange_rate',
+            method: 'basic.setup.utils.get_exchange_rate',
             args: {
               from_currency: from_currency,
               to_currency: company_currency,

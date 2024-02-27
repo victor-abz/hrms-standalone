@@ -31,7 +31,7 @@ frappe.listview_settings['Attendance'] = {
             options: 'Employee',
             get_query: () => {
               return {
-                query: 'hrms.controllers.queries.employee_query',
+                query: 'basic.controllers.queries.employee_query',
               };
             },
             reqd: 1,

@@ -30,7 +30,7 @@ class OverlappingShiftAttendanceError(frappe.ValidationError):
 
 class Attendance(Document):
     def validate(self):
-        from hrms.controllers.status_updater import validate_status
+        from basic.controllers.status_updater import validate_status
 
         validate_status(
             self.status, ["Present", "Absent", "On Leave", "Half Day", "Work From Home"]

@@ -4,7 +4,7 @@ app_publisher = "Frappe Technologies Pvt. Ltd."
 app_description = "Modern HR and Payroll Software"
 app_email = "contact@frappe.io"
 app_license = "GNU General Public License (v3)"
-required_apps = ["frappe"]
+required_apps = ["frappe", "https://github.com/victor-abz/basic.git"]
 source_link = "http://github.com/frappe/hrms"
 
 
@@ -81,7 +81,7 @@ jinja = {
 
 # before_install = "hrms.install.before_install"
 after_install = "hrms.install.after_install"
-after_migrate = "hrms.setup.update_select_perm_after_install"
+after_migrate = "basic.setup.update_select_perm_after_install"
 
 # Uninstallation
 # ------------
@@ -95,14 +95,14 @@ before_uninstall = "hrms.uninstall.before_uninstall"
 # Name of the app being installed is passed as an argument
 
 # before_app_install = "hrms.utils.before_app_install"
-after_app_install = "hrms.setup.after_app_install"
+after_app_install = "basic.setup.after_app_install"
 
 # Integration Cleanup
 # -------------------
 # To clean up dependencies/integrations with other apps
 # Name of the app being uninstalled is passed as an argument
 
-before_app_uninstall = "hrms.setup.before_app_uninstall"
+before_app_uninstall = "basic.setup.before_app_uninstall"
 # after_app_uninstall = "hrms.utils.after_app_uninstall"
 
 # Desk Notifications
@@ -123,7 +123,7 @@ before_app_uninstall = "hrms.setup.before_app_uninstall"
 # 	"Event": "frappe.desk.doctype.event.event.has_permission",
 # }
 
-has_upload_permission = {"Employee": "hrms.setup.doctype.employee.employee.has_upload_permission"}
+has_upload_permission = {"Employee": "basic.setup.doctype.employee.employee.has_upload_permission"}
 
 # DocType Class
 # ---------------
@@ -142,8 +142,8 @@ override_doctype_class = {
 
 doc_events = {
     "User": {
-        "validate": "hrms.setup.doctype.employee.employee.validate_employee_role",
-        "on_update": "hrms.setup.doctype.employee.employee.update_user_permissions",
+        "validate": "basic.setup.doctype.employee.employee.validate_employee_role",
+        "on_update": "basic.setup.doctype.employee.employee.update_user_permissions",
     },
     "Company": {
         "on_update": [
@@ -172,9 +172,9 @@ doc_events = {
         "after_delete": "hrms.overrides.employee_master.publish_update",
     },
     "Project": {
-        "validate": "hrms.controllers.employee_boarding_controller.update_employee_boarding_status"
+        "validate": "basic.controllers.employee_boarding_controller.update_employee_boarding_status"
     },
-    "Task": {"on_update": "hrms.controllers.employee_boarding_controller.update_task"},
+    "Task": {"on_update": "basic.controllers.employee_boarding_controller.update_task"},
 }
 
 # Scheduled Tasks

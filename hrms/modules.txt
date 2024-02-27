@@ -1,4 +1,3 @@
-Setup
 Projects
 HR
 Payroll

@@ -49,7 +49,7 @@ from hrms.payroll.doctype.salary_slip.salary_slip_loan_utils import (
     set_loan_repayment,
 )
 from hrms.payroll.utils import sanitize_expression
-from hrms.setup.doctype.employee.employee import get_holiday_list_for_employee
+from basic.setup.doctype.employee.employee import get_holiday_list_for_employee
 from hrms.utils.holiday_list import get_holiday_dates_between
 from hrms.utils.transaction_base import TransactionBase
 
@@ -549,7 +549,7 @@ class SalarySlip(TransactionBase):
         Exclude days before DOJ or after
         Relieving Date from unmarked days
         """
-        from hrms.setup.doctype.employee.employee import is_holiday
+        from basic.setup.doctype.employee.employee import is_holiday
 
         if include_holidays_in_total_working_days:
             unmarked_days -= date_diff(end_date, start_date) + 1

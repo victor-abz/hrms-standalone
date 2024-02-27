@@ -8,8 +8,8 @@ from frappe.utils import add_days, get_time, get_year_ending, get_year_start, ge
 
 from hrms.hr.doctype.leave_application.test_leave_application import get_first_sunday
 from hrms.payroll.doctype.salary_slip.test_salary_slip import make_holiday_list
-from hrms.setup.doctype.employee.test_employee import make_employee
-from hrms.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
+from basic.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
 from hrms.tests.test_utils import add_date_to_holiday_list
 
 

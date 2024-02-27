@@ -15,8 +15,8 @@ from hrms.payroll.doctype.salary_slip.test_salary_slip import (
     make_leave_application,
 )
 from hrms.payroll.doctype.salary_structure.test_salary_structure import make_salary_structure
-from hrms.setup.doctype.employee.test_employee import make_employee
-from hrms.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
+from basic.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
 from hrms.tests.test_utils import get_first_sunday
 
 test_records = frappe.get_test_records("Leave Type")

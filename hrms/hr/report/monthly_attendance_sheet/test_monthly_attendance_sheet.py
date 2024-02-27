@@ -12,8 +12,8 @@ from hrms.payroll.doctype.salary_slip.test_salary_slip import (
     make_holiday_list,
     make_leave_application,
 )
-from hrms.setup.doctype.employee.test_employee import make_employee
-from hrms.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
+from basic.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
 from hrms.tests.test_utils import get_first_day_for_prev_month
 
 

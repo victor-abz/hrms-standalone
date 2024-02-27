@@ -27,7 +27,7 @@ frappe.ui.form.on('Project', {
       };
     };
 
-    frm.set_query('customer', 'hrms.controllers.queries.customer_query');
+    frm.set_query('customer', 'basic.controllers.queries.customer_query');
 
     frm.set_query('user', 'users', function () {
       return {

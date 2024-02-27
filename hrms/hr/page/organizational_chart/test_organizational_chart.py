@@ -5,7 +5,7 @@ import frappe
 from frappe.tests.utils import FrappeTestCase
 
 from hrms.hr.page.organizational_chart.organizational_chart import get_children
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.employee.test_employee import make_employee
 from hrms.tests.test_utils import create_company
 
 

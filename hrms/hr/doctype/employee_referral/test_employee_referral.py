@@ -9,8 +9,8 @@ from hrms.hr.doctype.employee_referral.employee_referral import (
     create_additional_salary,
     create_job_applicant,
 )
-from hrms.setup.doctype.designation.test_designation import create_designation
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.designation.test_designation import create_designation
+from basic.setup.doctype.employee.test_employee import make_employee
 
 
 class TestEmployeeReferral(FrappeTestCase):

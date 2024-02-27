@@ -10,7 +10,7 @@ from hrms.hr.doctype.leave_allocation.test_leave_allocation import create_leave_
 from hrms.hr.doctype.leave_control_panel.leave_control_panel import LeaveControlPanel
 from hrms.hr.doctype.leave_period.test_leave_period import create_leave_period
 from hrms.hr.doctype.leave_policy.test_leave_policy import create_leave_policy
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.employee.test_employee import make_employee
 from hrms.tests.test_utils import create_company
 
 

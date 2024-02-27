@@ -139,7 +139,7 @@ $.extend(hrms.utils, {
     if (tc_name) {
       return frappe.call({
         method:
-          'hrms.setup.doctype.terms_and_conditions.terms_and_conditions.get_terms_and_conditions',
+          'basic.setup.doctype.terms_and_conditions.terms_and_conditions.get_terms_and_conditions',
         args: {
           template_name: tc_name,
           doc: doc,

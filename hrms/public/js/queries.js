@@ -9,25 +9,25 @@ $.extend(hrms.queries, {
   },
 
   lead: function () {
-    return { query: 'hrms.controllers.queries.lead_query' };
+    return { query: 'basic.controllers.queries.lead_query' };
   },
 
   customer: function () {
-    return { query: 'hrms.controllers.queries.customer_query' };
+    return { query: 'basic.controllers.queries.customer_query' };
   },
 
   supplier: function () {
-    return { query: 'hrms.controllers.queries.supplier_query' };
+    return { query: 'basic.controllers.queries.supplier_query' };
   },
 
   item: function (filters) {
-    var args = { query: 'hrms.controllers.queries.item_query' };
+    var args = { query: 'basic.controllers.queries.item_query' };
     if (filters) args['filters'] = filters;
     return args;
   },
 
   bom: function () {
-    return { query: 'hrms.controllers.queries.bom' };
+    return { query: 'basic.controllers.queries.bom' };
   },
 
   task: function () {
@@ -145,7 +145,7 @@ $.extend(hrms.queries, {
   },
 
   employee: function () {
-    return { query: 'hrms.controllers.queries.employee_query' };
+    return { query: 'basic.controllers.queries.employee_query' };
   },
 
   warehouse: function (doc) {
@@ -167,7 +167,7 @@ $.extend(hrms.queries, {
     });
 
     return {
-      query: 'hrms.controllers.queries.get_filtered_dimensions',
+      query: 'basic.controllers.queries.get_filtered_dimensions',
       filters: {
         dimension: dimension,
         account: account,
@@ -215,7 +215,7 @@ hrms.queries.setup_warehouse_query = function (frm) {
     var row = locals[cdt][cdn];
     var filters = hrms.queries.warehouse(frm.doc);
     if (row.item_code) {
-      $.extend(filters, { query: 'hrms.controllers.queries.warehouse_query' });
+      $.extend(filters, { query: 'basic.controllers.queries.warehouse_query' });
       filters['filters'].push(['Bin', 'item_code', '=', row.item_code]);
     }
     return filters;

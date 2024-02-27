@@ -31,7 +31,7 @@ from hrms.hr.utils import (
     validate_active_employee,
 )
 from hrms.mixins.pwa_notifications import PWANotificationsMixin
-from hrms.setup.doctype.employee.employee import get_holiday_list_for_employee
+from basic.setup.doctype.employee.employee import get_holiday_list_for_employee
 from hrms.utils import daterange, get_employee_email
 
 

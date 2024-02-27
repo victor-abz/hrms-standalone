@@ -189,7 +189,7 @@ def get_leave_balance_map(employee: str) -> dict[str, dict[str, float]]:
 
 @frappe.whitelist()
 def get_holidays_for_employee(employee: str) -> list[dict]:
-    from hrms.setup.doctype.employee.employee import get_holiday_list_for_employee
+    from basic.setup.doctype.employee.employee import get_holiday_list_for_employee
 
     holiday_list = get_holiday_list_for_employee(employee, raise_exception=False)
     if not holiday_list:

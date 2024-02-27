@@ -62,7 +62,7 @@ const employeeCurrency = createResource({
 })
 
 const exchangeRate = createResource({
-  url: "hrms.setup.utils.get_exchange_rate",
+  url: "basic.setup.utils.get_exchange_rate",
   onSuccess(data) {
     employeeAdvance.value.exchange_rate = data
   },

@@ -6,8 +6,8 @@ from frappe.tests.utils import FrappeTestCase
 
 from hrms.hr.doctype.appraisal_cycle.test_appraisal_cycle import create_appraisal_cycle
 from hrms.hr.doctype.appraisal_template.test_appraisal_template import create_appraisal_template
-from hrms.setup.doctype.designation.test_designation import create_designation
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.designation.test_designation import create_designation
+from basic.setup.doctype.employee.test_employee import make_employee
 from hrms.tests.test_utils import create_company
 
 

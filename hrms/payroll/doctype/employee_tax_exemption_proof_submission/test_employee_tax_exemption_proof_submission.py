@@ -12,7 +12,7 @@ from hrms.payroll.doctype.employee_tax_exemption_declaration.test_employee_tax_e
     create_payroll_period,
     setup_hra_exemption_prerequisites,
 )
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.employee.test_employee import make_employee
 
 
 class TestEmployeeTaxExemptionProofSubmission(FrappeTestCase):

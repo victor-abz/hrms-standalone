@@ -24,7 +24,7 @@ from hrms.hr.doctype.leave_policy_assignment.leave_policy_assignment import (
 )
 from hrms.hr.utils import allocate_earned_leaves, round_earned_leaves
 from hrms.payroll.doctype.salary_slip.test_salary_slip import make_holiday_list
-from hrms.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
+from basic.setup.doctype.holiday_list.test_holiday_list import set_holiday_list
 from hrms.tests.test_utils import get_first_sunday
 
 

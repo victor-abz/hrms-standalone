@@ -7,8 +7,8 @@ from hrms.hr.doctype.employee_performance_feedback.test_employee_performance_fee
     create_performance_feedback,
 )
 from hrms.hr.report.appraisal_overview.appraisal_overview import execute
-from hrms.setup.doctype.designation.test_designation import create_designation
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.designation.test_designation import create_designation
+from basic.setup.doctype.employee.test_employee import make_employee
 from hrms.tests.test_utils import create_company
 
 

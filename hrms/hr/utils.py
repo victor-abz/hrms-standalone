@@ -25,7 +25,7 @@ from hrms import get_company_currency
 from hrms.hr.doctype.leave_policy_assignment.leave_policy_assignment import (
     calculate_pro_rated_leaves,
 )
-from hrms.setup.doctype.employee.employee import (
+from basic.setup.doctype.employee.employee import (
     InactiveEmployeeStatusError,
     get_holiday_list_for_employee,
 )

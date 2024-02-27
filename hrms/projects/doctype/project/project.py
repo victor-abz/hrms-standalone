@@ -2,6 +2,9 @@
 # License: GNU General Public License v3. See license.txt
 
 
+from basic.controllers.queries import get_filters_cond
+from basic.controllers.website_list_for_contact import get_customers_suppliers
+from basic.setup.doctype.holiday_list.holiday_list import is_holiday
 from email_reply_parser import EmailReplyParser
 
 import frappe
@@ -14,10 +17,6 @@ from frappe.utils import add_days, flt, get_datetime, get_time, get_url, nowtime
 from frappe.utils.user import is_website_user
 
 from hrms import get_default_company
-
-from hrms.controllers.queries import get_filters_cond
-from hrms.controllers.website_list_for_contact import get_customers_suppliers
-from hrms.setup.doctype.holiday_list.holiday_list import is_holiday
 
 
 class Project(Document):
@@ -428,7 +427,7 @@ def get_project_list(
 
 
 def get_list_context(context=None):
-    from hrms.controllers.website_list_for_contact import get_list_context
+    from basic.controllers.website_list_for_contact import get_list_context
 
     list_context = get_list_context(context)
     list_context.update(

@@ -6,7 +6,7 @@ from frappe.tests.utils import FrappeTestCase
 
 from hrms.hr.doctype.appraisal_template.test_appraisal_template import create_kras
 from hrms.hr.doctype.goal.goal import get_children, update_status
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.employee.test_employee import make_employee
 
 
 class TestGoal(FrappeTestCase):

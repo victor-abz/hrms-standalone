@@ -11,7 +11,7 @@ from frappe.tests.utils import FrappeTestCase
 from frappe.utils import getdate
 
 from hrms.hr.doctype.exit_interview.exit_interview import send_exit_questionnaire
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.employee.test_employee import make_employee
 
 
 class TestExitInterview(FrappeTestCase):

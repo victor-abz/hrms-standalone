@@ -7,7 +7,7 @@ from frappe.utils import add_days, nowdate
 
 from hrms.hr.doctype.shift_request.shift_request import OverlappingShiftRequestError
 from hrms.hr.doctype.shift_type.test_shift_type import setup_shift_type
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.employee.test_employee import make_employee
 
 test_dependencies = ["Shift Type"]
 

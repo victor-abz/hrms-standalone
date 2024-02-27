@@ -6,7 +6,7 @@ from frappe.utils import format_datetime
 
 from hrms.hr.doctype.shift_type.test_shift_type import setup_shift_type
 from hrms.hr.report.shift_attendance.shift_attendance import execute
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.employee.test_employee import make_employee
 from hrms.tests.test_utils import create_company
 
 

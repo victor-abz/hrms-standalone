@@ -213,7 +213,7 @@ frappe.ui.form.on('Expense Claim Detail', {
 
 //     frm.set_query('employee', function () {
 //       return {
-//         query: 'hrms.controllers.queries.employee_query',
+//         query: 'basic.controllers.queries.employee_query',
 //       };
 //     });
 //   },

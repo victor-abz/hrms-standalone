@@ -11,7 +11,7 @@ from hrms.hr.doctype.employee_attendance_tool.employee_attendance_tool import (
     mark_employee_attendance,
 )
 from hrms.hr.doctype.shift_type.test_shift_type import setup_shift_type
-from hrms.setup.doctype.employee.test_employee import make_employee
+from basic.setup.doctype.employee.test_employee import make_employee
 
 
 class TestEmployeeAttendanceTool(FrappeTestCase):
