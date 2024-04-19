@@ -3,7 +3,7 @@
 
 frappe.ui.form.on('Timesheet', {
   setup: function (frm) {
-    frappe.require('/assets/erpnext/js/projects/timer.js');
+    // frappe.require('/assets/erpnext/js/projects/timer.js');
 
 
     frm.fields_dict.employee.get_query = function () {
