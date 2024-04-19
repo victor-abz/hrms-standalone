@@ -106,7 +106,7 @@ def create_exit_interview(employee, save=True):
 def create_notification_template():
     template = frappe.db.exists("Email Template", _("Exit Questionnaire Notification"))
     if not template:
-        base_path = frappe.get_app_path("erpnext", "hr", "doctype")
+        base_path = frappe.get_app_path("hr", "doctype")
         response = frappe.read_file(
             os.path.join(base_path, "exit_interview/exit_questionnaire_notification_template.html")
         )
