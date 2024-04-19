@@ -131,9 +131,7 @@ has_upload_permission = {"Employee": "basic.setup.doctype.employee.employee.has_
 
 override_doctype_class = {
     "Employee": "hrms.overrides.employee_master.EmployeeMaster",
-    "Timesheet": "hrms.overrides.employee_timesheet.EmployeeTimesheet",
-    # "Payment Entry": "hrms.overrides.employee_payment_entry.EmployeePaymentEntry",
-    # "Project": "hrms.overrides.employee_project.EmployeeProject",
+    "Timesheet": "hrms.overrides.employee_timesheet.EmployeeTimesheet"
 }
 
 # Document Events
@@ -171,9 +169,9 @@ doc_events = {
         "on_trash": "hrms.overrides.employee_master.update_employee_transfer",
         "after_delete": "hrms.overrides.employee_master.publish_update",
     },
-    "Project": {
-        "validate": "basic.controllers.employee_boarding_controller.update_employee_boarding_status"
-    },
+    # "Project": {
+    #     "validate": "basic.controllers.employee_boarding_controller.update_employee_boarding_status"
+    # },
     "Task": {"on_update": "basic.controllers.employee_boarding_controller.update_task"},
 }
 
@@ -253,7 +251,6 @@ override_doctype_dashboards = {
     "Employee": "hrms.overrides.dashboard_overrides.get_dashboard_for_employee",
     "Holiday List": "hrms.overrides.dashboard_overrides.get_dashboard_for_holiday_list",
     "Task": "hrms.overrides.dashboard_overrides.get_dashboard_for_project",
-    "Project": "hrms.overrides.dashboard_overrides.get_dashboard_for_project",
     "Timesheet": "hrms.overrides.dashboard_overrides.get_dashboard_for_timesheet",
 }
 
