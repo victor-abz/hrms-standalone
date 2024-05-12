@@ -47,6 +47,16 @@
   },
   {
    "hidden": 0,
+   "is_query_report": 1,
+   "label": "Unpaid Expense Claim",
+   "link_count": 0,
+   "link_to": "Unpaid Expense Claim",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
    "is_query_report": 0,
    "label": "Travel",
    "link_count": 2,
@@ -76,68 +86,11 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Advances",
-   "link_count": 4,
+   "label": "Fleet Management",
+   "link_count": 2,
+   "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Employee Advance",
-   "link_count": 0,
-   "link_to": "Employee Advance",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Payment Entry",
-   "link_count": 0,
-   "link_to": "Payment Entry",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Additional Salary",
-   "link_count": 0,
-   "link_to": "Additional Salary",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Reports",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Employee Advance Summary",
-   "link_count": 0,
-   "link_to": "Employee Advance Summary",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Unpaid Expense Claim",
-   "link_count": 0,
-   "link_to": "Unpaid Expense Claim",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
   },
   {
    "hidden": 0,
@@ -148,32 +101,6 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Accounting Reports",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "General Ledger",
-   "link_count": 0,
-   "link_to": "General Ledger",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fleet Management",
-   "link_count": 5,
-   "onboard": 0,
-   "type": "Card Break"
   },
   {
    "hidden": 0,
@@ -226,7 +153,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-08-02 10:19:14.376183",
+ "modified": "2024-05-12 15:52:34.148094",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Expense Claims",
@@ -244,15 +171,6 @@
    "label": "Dashboard",
    "link_to": "Expense Claims",
    "type": "Dashboard"
-  },
-  {
-   "color": "Orange",
-   "doc_view": "List",
-   "format": "{} Unclaimed",
-   "label": "Employee Advance",
-   "link_to": "Employee Advance",
-   "stats_filter": "{\"status\":[\"=\",\"Paid\"]}",
-   "type": "DocType"
   },
   {
    "color": "Orange",
