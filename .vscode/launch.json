@@ -1,0 +1,114 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": "Bench Web",
+          "type": "python",
+          "request": "launch",
+          "program": "${workspaceFolder}/../frappe/frappe/utils/bench_helper.py",
+          "python": "${workspaceFolder}/../../env/bin/python",
+          "justMyCode": false,
+          "args": [
+              "frappe",
+              "serve",
+              "--port",
+              "8012",
+              "--noreload",
+              "--nothreading"
+          ],
+          "cwd": "${workspaceFolder}/../../sites",
+          "env": {
+              "DEV_SERVER": "1"
+          }
+      },
+      {
+          "name": "Bench Default Worker",
+          "type": "python",
+          "request": "launch",
+          "program": "${workspaceFolder}/../../apps/frappe/frappe/utils/bench_helper.py",
+          "python": "${workspaceFolder}/../../env/bin/python",
+          "justMyCode": false,
+          "args": [
+              "frappe",
+              "worker",
+              "--queue",
+              "default"
+          ],
+          "cwd": "${workspaceFolder}/../../sites",
+          "env": {
+              "DEV_SERVER": "1"
+          }
+      },
+      {
+          "name": "Bench Short Worker",
+          "type": "python",
+          "request": "launch",
+          "program": "${workspaceFolder}/../../apps/frappe/frappe/utils/bench_helper.py",
+          "python": "${workspaceFolder}/../../env/bin/python",
+          "justMyCode": false,
+          "args": [
+              "frappe",
+              "worker",
+              "--queue",
+              "short"
+          ],
+          "cwd": "${workspaceFolder}/../../sites",
+          "env": {
+              "DEV_SERVER": "1"
+          }
+      },
+      {
+          "name": "Bench Long Worker",
+          "type": "python",
+          "request": "launch",
+          "program": "${workspaceFolder}/../../apps/frappe/frappe/utils/bench_helper.py",
+          "python": "${workspaceFolder}/../../env/bin/python",
+          "justMyCode": false,
+          "args": [
+              "frappe",
+              "worker",
+              "--queue",
+              "long"
+          ],
+          "cwd": "${workspaceFolder}/../../sites",
+          "env": {
+              "DEV_SERVER": "1"
+          }
+      },
+      {
+          "name": "Honcho SocketIO Watch Schedule Worker",
+          "type": "python",
+          "request": "launch",
+          "program": "/home/msacco/.local/bin/honcho",
+          "python": "${workspaceFolder}/../../env/bin/python",
+          "cwd": "${workspaceFolder}/../..",
+          "console": "internalConsole",
+          "justMyCode": false,
+          "args": [
+              "start",
+              "socketio",
+              "watch",
+              "schedule",
+              "worker_short",
+              "worker_long",
+              "worker_default"
+          ]
+      },
+      {
+        "name": "bench execute",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/../../apps/frappe/frappe/utils/bench_helper.py",
+        "python": "${workspaceFolder}/../../env/bin/python",
+        "args": [
+            "frappe",
+            "execute",
+            "hrms.hr.doctype.shift_type.shift_type.process_auto_attendance_for_all_shifts",
+        ],
+        "cwd": "${workspaceFolder}/../../sites",
+        "env": {
+            "DEV_SERVER": "1"
+        }
+    },
+  ]
+}

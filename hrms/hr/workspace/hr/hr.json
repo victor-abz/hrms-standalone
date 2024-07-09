@@ -7,12 +7,14 @@
  ],
  "content": "[{\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Human Resource\",\"col\":12}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Hiring vs Attrition Count\",\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HR Dashboard\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recruitment Dashboard\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Lifecycle Dashboard\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendance Dashboard\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Expense Claims Dashboard\",\"col\":3}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Employee\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Leaves\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Attendance\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Expense Claim\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}}]",
  "creation": "2020-03-02 15:48:58.322521",
+ "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
  "icon": "hr",
  "idx": 0,
+ "is_hidden": 0,
  "label": "HR",
  "links": [
   {
@@ -98,7 +100,8 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Key Reports",
-   "link_count": 7,
+   "link_count": 3,
+   "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
   },
@@ -158,17 +161,6 @@
    "type": "Link"
   },
   {
-   "dependencies": "Employee Advance",
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Employee Advance Summary",
-   "link_count": 0,
-   "link_to": "Employee Advance Summary",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
    "hidden": 0,
    "is_query_report": 0,
    "label": "Employee Exits",
@@ -182,7 +174,8 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Other Reports",
-   "link_count": 4,
+   "link_count": 3,
+   "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
   },
@@ -231,14 +224,6 @@
    "type": "Link"
   },
   {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Setup",
-   "link_count": 4,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
    "dependencies": "",
    "hidden": 0,
    "is_query_report": 0,
@@ -283,14 +268,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leaves",
-   "link_count": 2,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Leave Application",
    "link_count": 0,
    "link_to": "Leave Application",
@@ -307,14 +284,6 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Attendance",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
   },
   {
    "hidden": 0,
@@ -350,26 +319,8 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Expense Claim",
-   "link_count": 3,
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Expense Claim",
    "link_count": 0,
    "link_to": "Expense Claim",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Employee Advance",
-   "link_count": 0,
-   "link_to": "Employee Advance",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -385,10 +336,11 @@
    "type": "Link"
   }
  ],
- "modified": "2022-12-06 16:55:59.080694",
+ "modified": "2024-05-12 18:44:36.239686",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "HR",
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,

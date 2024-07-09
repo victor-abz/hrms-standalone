@@ -11,8 +11,6 @@ dist/
 __pycache__/
 
 # build/
-.vscode
-.vs
 node_modules
 *debug.log
 hrms/docs/current
