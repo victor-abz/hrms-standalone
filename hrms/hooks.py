@@ -16,6 +16,10 @@ source_link = "http://github.com/frappe/hrms"
 app_include_js = [
     "hrms.bundle.js",
 ]
+
+fixtures=[
+    "Workflow"
+]
 app_include_css = "hrms.bundle.css"
 
 # website
