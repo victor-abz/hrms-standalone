@@ -71,10 +71,6 @@ class LeaveApplication(Document, PWANotificationsMixin):
 
     def validate(self):
         validate_active_employee(self.employee)
-        set_employee_name(self)
-        user_role = frappe.session
-        print(user_role)
-        # self.validate_role()
         self.validate_dates()
         self.validate_balance_leaves()
         self.validate_leave_overlap()
@@ -196,8 +192,7 @@ class LeaveApplication(Document, PWANotificationsMixin):
             self.validate_dates_across_allocation()
             self.validate_back_dated_application()
 
-    def validate_role():
-        pass
+    
     def validate_dates_across_allocation(self):
         if frappe.db.get_value("Leave Type", self.leave_type, "allow_negative"):
             return
