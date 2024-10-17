@@ -73,11 +73,11 @@ class ShiftType(Document):
 
 		# mark absent in batches & commit to avoid losing progress since this tries to process remaining attendance
 		# right from "Process Attendance After" to "Last Sync of Checkin"
-		# for batch in create_batch(assigned_employees, EMPLOYEE_CHUNK_SIZE):
-		# 	for employee in batch:
-		# 		self.mark_absent_for_dates_with_no_attendance(employee)
+		for batch in create_batch(assigned_employees, EMPLOYEE_CHUNK_SIZE):
+			for employee in batch:
+				self.mark_absent_for_dates_with_no_attendance(employee)
 
-		# 	frappe.db.commit()  # nosemgrep
+			frappe.db.commit()  # nosemgrep
 
 	def get_employee_checkins(self) -> list[dict]:
 		return frappe.get_all(
