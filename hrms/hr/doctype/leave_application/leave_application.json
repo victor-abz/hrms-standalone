@@ -162,8 +162,7 @@
   {
    "fieldname": "leave_approver_name",
    "fieldtype": "Data",
-   "label": "Leave Approver Name",
-   "read_only": 1
+   "label": "Leave Approver Name"
   },
   {
    "fieldname": "column_break_18",
@@ -255,7 +254,7 @@
  "is_submittable": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2024-09-05 10:19:42.558816",
+ "modified": "2024-10-17 10:54:42.638263",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Application",
@@ -343,6 +342,17 @@
    "read": 1,
    "report": 1,
    "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Requester",
    "share": 1,
    "write": 1
   }

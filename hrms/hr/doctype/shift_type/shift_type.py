@@ -35,7 +35,6 @@ class ShiftType(Document):
 			return
 
 		logs = self.get_employee_checkins()
-		print(logs)
 
 		group_key = lambda x: (x["employee"], x["shift_start"])  # noqa
 		for key, group in groupby(sorted(logs, key=group_key), key=group_key):
@@ -74,11 +73,11 @@ class ShiftType(Document):
 
 		# mark absent in batches & commit to avoid losing progress since this tries to process remaining attendance
 		# right from "Process Attendance After" to "Last Sync of Checkin"
-		for batch in create_batch(assigned_employees, EMPLOYEE_CHUNK_SIZE):
-			for employee in batch:
-				self.mark_absent_for_dates_with_no_attendance(employee)
+		# for batch in create_batch(assigned_employees, EMPLOYEE_CHUNK_SIZE):
+		# 	for employee in batch:
+		# 		self.mark_absent_for_dates_with_no_attendance(employee)
 
-			frappe.db.commit()  # nosemgrep
+		# 	frappe.db.commit()  # nosemgrep
 
 	def get_employee_checkins(self) -> list[dict]:
 		return frappe.get_all(
@@ -101,6 +100,7 @@ class ShiftType(Document):
 				"time": (">=", self.process_attendance_after),
 				"shift_actual_end": ("<", self.last_sync_of_checkin),
 				"shift": self.name,
+				
 			},
 			order_by="employee,time",
 		)
