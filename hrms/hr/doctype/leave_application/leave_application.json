@@ -24,6 +24,7 @@
   "column_break1",
   "description",
   "leave_balance",
+  "cover",
   "section_break_7",
   "leave_approver",
   "leave_approver_name",
@@ -248,6 +249,12 @@
    "fieldname": "sb_other_details",
    "fieldtype": "Section Break",
    "label": "Other Details"
+  },
+  {
+   "fieldname": "cover",
+   "fieldtype": "Link",
+   "label": "Who is going to cover for me",
+   "options": "Employee"
   }
  ],
  "icon": "fa fa-calendar",
@@ -255,7 +262,7 @@
  "is_submittable": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2024-09-05 10:19:42.558816",
+ "modified": "2025-01-24 10:08:41.595614",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Application",
@@ -289,9 +296,13 @@
    "write": 1
   },
   {
+   "create": 1,
+   "delete": 1,
    "permlevel": 1,
    "read": 1,
-   "role": "All"
+   "role": "All",
+   "submit": 1,
+   "write": 1
   },
   {
    "amend": 1,

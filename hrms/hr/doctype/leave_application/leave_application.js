@@ -39,6 +39,90 @@ frappe.ui.form.on('Leave Application', {
       });
     }
   },
+  before_workflow_action: async (frm) => {
+    const workflowState = frm.doc.workflow_state;
+  
+  
+    if (
+      workflowState === "Pending Supervisor Approval" ||
+      workflowState === "Pending HR Approval" ||
+      workflowState === "Pending DAF Approval" ||
+      workflowState === "Pending DG approval" ||
+      workflowState === "Approved"
+    ) {
+      let dialog = new frappe.ui.Dialog({
+        title: __('Enter your comment'),
+        fields: [
+          {
+            label: 'Comment',
+            fieldname: 'comment',
+            fieldtype: 'Small Text',
+            reqd: true,
+      // Create a dialog to prompt for comments
+          }
+        ],
+        primary_action: function () {
+          const comment = dialog.get_value('comment');
+  
+          if (!comment) {
+            frappe.msgprint(__('Comment is mandatory. Please enter a comment.'));
+            reqd: true
+            return;
+          }
+  
+          frappe.call({
+          // Get the comment entered by the user
+            method: "frappe.desk.form.utils.add_comment",
+  
+          // Validate the comment
+            args: {
+              reference_doctype: frm.doctype,
+              reference_name: frm.docname,
+              content: comment,
+              comment_email: frappe.session.user,
+  
+          // Add the comment to the sales order
+              comment_by: frappe.session.user_fullname
+            },
+            callback: function (r) {
+              if (!r.exc) {
+                dialog.hide();
+              }
+            }
+          });
+        },
+        primary_action_label: __('Confirm approval'),
+      });
+              // Hide the dialog if the comment is added successfully
+  
+      dialog.$wrapper.find('.modal-header .close').prop('disabled', true);
+  
+      dialog.fields_dict.comment.$input.on('input', function () {
+        const comment = dialog.get_value('comment');
+        dialog.$wrapper.find('.modal-header .close').prop('disabled', !comment);
+        primary_action_label: __('Confirm approval')
+      });
+  
+  
+      // Disable the close button on the dialog initially
+      dialog.$wrapper.find('.modal-header .close').remove();
+  
+  
+      // Enable the close button when a comment is entered
+      dialog.$wrapper.find('.modal-header').append(
+        '<button class="btn btn-default btn-xs pull-right close-dialog" disabled>Close</button>'
+      );
+  
+      dialog.$wrapper.find('.modal-header .close-dialog').on('click', function () {
+  
+      // Remove the default close button on the dialog
+        dialog.hide();
+      });
+  
+      // Add a custom close button to the dialog
+      dialog.show();
+    }
+  },
 
   validate: function (frm) {
     if (frm.doc.from_date === frm.doc.to_date && cint(frm.doc.half_day)) {
@@ -257,6 +341,7 @@ frappe.ui.form.on('Leave Application', {
     }
   },
 });
+
 
 frappe.tour['Leave Application'] = [
   {
