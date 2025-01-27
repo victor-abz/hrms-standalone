@@ -7,7 +7,8 @@ from frappe.utils import nowdate
 
 class PermissionApplication(Document):
     def validate(self):
-        self.validate_time()
+        # self.validate_time()
+        pass
 
     def validate_time(self):
         # Ensure arriving time is not less than leaving time
