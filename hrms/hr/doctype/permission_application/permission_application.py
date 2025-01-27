@@ -10,9 +10,9 @@ class PermissionApplication(Document):
         # self.validate_time()
         pass
 
-    def validate_time(self):
-        # Ensure arriving time is not less than leaving time
-        if self.date_and_time_of_arriving < self.date_and_time_of_leaving:
-            frappe.throw("The date and time of arriving cannot be before the date and time of leaving.")
-        # if self.date_and_time_of_leaving< :
-        #     frappe.throw("the date can't be in the past.")
+    # def validate_time(self):
+    #     # Ensure arriving time is not less than leaving time
+    #     if self.date_and_time_of_arriving < self.date_and_time_of_leaving:
+    #         frappe.throw("The date and time of arriving cannot be before the date and time of leaving.")
+    #     # if self.date_and_time_of_leaving< :
+    #     #     frappe.throw("the date can't be in the past.")
