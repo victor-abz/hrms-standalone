@@ -25,6 +25,7 @@
   "description",
   "leave_balance",
   "cover",
+  "attachment_if_needed",
   "section_break_7",
   "leave_approver",
   "leave_approver_name",
@@ -253,8 +254,13 @@
   {
    "fieldname": "cover",
    "fieldtype": "Link",
-   "label": "Who is going to cover for me",
+   "label": "Who Will Cover the Absence( To be assigned by Direct Supervisor)",
    "options": "Employee"
+  },
+  {
+   "fieldname": "attachment_if_needed",
+   "fieldtype": "Attach",
+   "label": "Attachment (if needed)"
   }
  ],
  "icon": "fa fa-calendar",
@@ -262,7 +268,7 @@
  "is_submittable": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2025-01-24 10:08:41.595614",
+ "modified": "2025-01-27 10:04:53.264630",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Application",
