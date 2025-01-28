@@ -34,7 +34,7 @@ class EmployeeCheckin(Document):
 			frappe.throw(
 				_("This employee already has a log with the same timestamp.{0}").format("<Br>" + doc_link)
 			)
-
+ 
 	def fetch_shift(self):
 		shift_actual_timings = get_actual_start_end_datetime_of_shift(
 			self.employee, get_datetime(self.time), True
