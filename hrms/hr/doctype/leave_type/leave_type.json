@@ -168,7 +168,7 @@
    "fieldname": "rounding",
    "fieldtype": "Select",
    "label": "Rounding",
-   "options": "\n0.25\n0.5\n1.0"
+   "options": "\n0.25\n0.5\n1.0\n1.5"
   },
   {
    "depends_on": "is_carry_forward",
@@ -234,7 +234,7 @@
  "icon": "fa fa-flag",
  "idx": 1,
  "links": [],
- "modified": "2023-10-23 15:34:04.281308",
+ "modified": "2025-01-31 16:02:14.353755",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Type",
