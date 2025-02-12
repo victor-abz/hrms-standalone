@@ -117,13 +117,13 @@ def get_data(filters: Filters) -> list:
 			)
 			opening = get_opening_balance(employee.name, leave_type, filters, carry_forwarded_leaves)
 
-			row.leaves_allocated = flt(new_allocation, precision)
-			row.leaves_expired = flt(expired_leaves, precision)
-			row.opening_balance = flt(opening, precision)
-			row.leaves_taken = flt(leaves_taken, precision)
+			row.leaves_allocated = flt(new_allocation)
+			row.leaves_expired = flt(expired_leaves)
+			row.opening_balance = flt(opening)
+			row.leaves_taken = flt(leaves_taken)
 
 			closing = new_allocation + opening - (row.leaves_expired + leaves_taken)
-			row.closing_balance = flt(closing, precision)
+			row.closing_balance = flt(closing)
 			row.indent = 1
 			data.append(row)
 

@@ -921,11 +921,11 @@ def get_leave_details(employee, date):
         expired_leaves = allocation.total_leaves_allocated - (remaining_leaves + leaves_taken)
 
         leave_allocation[d] = {
-            "total_leaves": flt(allocation.total_leaves_allocated, precision),
-            "expired_leaves": flt(expired_leaves, precision) if expired_leaves > 0 else 0,
-            "leaves_taken": flt(leaves_taken, precision),
-            "leaves_pending_approval": flt(leaves_pending, precision),
-            "remaining_leaves": flt(remaining_leaves, precision),
+            "total_leaves": flt(allocation.total_leaves_allocated),
+            "expired_leaves": flt(expired_leaves,) if expired_leaves > 0 else 0,
+            "leaves_taken": flt(leaves_taken),
+            "leaves_pending_approval": flt(leaves_pending),
+            "remaining_leaves": flt(remaining_leaves),
         }
 
     # is used in set query
