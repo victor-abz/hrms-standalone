@@ -158,7 +158,6 @@
   {
    "fieldname": "leave_approver",
    "fieldtype": "Link",
-   "hidden": 1,
    "label": "Leave Approver",
    "options": "User"
   },
@@ -270,7 +269,7 @@
  "is_submittable": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2025-02-05 23:27:23.806443",
+ "modified": "2025-02-18 09:37:30.487045",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Application",
