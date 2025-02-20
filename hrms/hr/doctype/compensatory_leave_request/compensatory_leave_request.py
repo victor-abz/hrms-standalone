@@ -39,7 +39,7 @@ class CompensatoryLeaveRequest(Document):
 			"Attendance",
 			filters={
 				"attendance_date": ["between", (self.work_from_date, self.work_end_date)],
-				"status": ("in", ["Present", "Work From Home", "Half Day"]),
+				"status": ("in", ["Present", "Work From Home", "Half Day" ,"On Leave"]),
 				"docstatus": 1,
 				"employee": self.employee,
 			},

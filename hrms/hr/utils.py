@@ -607,14 +607,17 @@ def get_holidays_for_employee(
 
     filters = {"parent": holiday_list, "holiday_date": ("between", [start_date, end_date])}
 
-    if only_non_weekly:
-        filters["weekly_off"] = False
+    # if only_non_weekly:
+    #     filters["weekly_off"] = False
 
     holidays = frappe.get_all(
-        "Holiday", fields=["description", "holiday_date"], filters=filters, order_by="holiday_date"
+        "Attendance", fields=["leave_type", "status"], filters={
+            "status":"On Leave"
+            }, order_by="attendance_date"
     )
 
     return holidays
+
 
 
 def get_previous_claimed_amount(employee, payroll_period, non_pro_rata=False, component=False):
