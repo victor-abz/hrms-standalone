@@ -10,8 +10,8 @@ from frappe.utils import nowdate, get_datetime
 from datetime import datetime
 
 class PermissionApplication(Document):
-    def validate(self):
-        self.validate_time()
+    # def validate(self):
+    #     self.validate_time()
 
     def validate_time(self):
         # Convert fields to datetime objects
