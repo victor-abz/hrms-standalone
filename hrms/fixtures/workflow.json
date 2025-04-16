@@ -144,7 +144,7 @@
   "doctype": "Workflow",
   "document_type": "Leave Application",
   "is_active": 1,
-  "modified": "2025-01-24 11:14:54.793386",
+  "modified": "2025-04-16 15:21:26.071326",
   "name": "Leave request",
   "override_status": 0,
   "send_email_alert": 0,
@@ -465,7 +465,7 @@
     "allow_self_approval": 1,
     "allowed": "DAF",
     "condition": null,
-    "next_state": "Pending DG approval",
+    "next_state": "Approved",
     "parent": "Leave request",
     "parentfield": "transitions",
     "parenttype": "Workflow",
@@ -578,6 +578,18 @@
     "parentfield": "transitions",
     "parenttype": "Workflow",
     "state": "Pending Submission",
+    "workflow_builder_id": null
+   },
+   {
+    "action": "Proceed to DG",
+    "allow_self_approval": 1,
+    "allowed": "DAF",
+    "condition": null,
+    "next_state": "Pending DG approval",
+    "parent": "Leave request",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending DAF Approval",
     "workflow_builder_id": null
    }
   ],

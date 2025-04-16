@@ -338,9 +338,11 @@ def generate_leave_encashment():
 
 
 def allocate_earned_leaves():
+
     """Allocate earned leaves to Employees"""
     e_leave_types = get_earned_leaves()
-    today = frappe.flags.current_date or getdate()
+    today = "2025-04-11"
+    
 
     for e_leave_type in e_leave_types:
         leave_allocations = get_leave_allocations(today, e_leave_type.name)
@@ -375,7 +377,7 @@ def allocate_earned_leaves():
                 from_date, today, e_leave_type.earned_leave_frequency, e_leave_type.allocate_on_day
             ):
                 update_previous_leave_allocation(
-                    allocation, annual_allocation, e_leave_type, date_of_joining
+                    allocation, annual_allocation, e_leave_type, "2025-04-11"
                 )
 
 
@@ -480,7 +482,7 @@ def get_leave_allocations(date, leave_type):
     )
 
 
-def get_earned_leaves():
+def  get_earned_leaves():
     return frappe.get_all(
         "Leave Type",
         fields=[
@@ -607,8 +609,8 @@ def get_holidays_for_employee(
 
     filters = {"parent": holiday_list, "holiday_date": ("between", [start_date, end_date])}
 
-    # if only_non_weekly:
-    #     filters["weekly_off"] = False
+    if only_non_weekly:
+        filters["weekly_off"] = False
 
     holidays = frappe.get_all(
         "Attendance", fields=["leave_type", "status"], filters={
@@ -782,3 +784,4 @@ def get_ec_matching_query(bank_account, company, exact_match, from_date=None, to
 			AND mode_of_payment in {mode_of_payments}
 			{filter_by_date}
 	"""
+
