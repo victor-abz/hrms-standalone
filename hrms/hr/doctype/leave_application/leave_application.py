@@ -84,6 +84,8 @@ class LeaveApplication(Document, PWANotificationsMixin):
         if frappe.db.get_value("Leave Type", self.leave_type, "is_optional_leave"):
             self.validate_optional_leave()
         self.validate_applicable_after()
+        Send_notification(self)
+        
 
     def on_update(self):
         if self.status == "Open" and self.docstatus < 1:
@@ -233,8 +235,8 @@ class LeaveApplication(Document, PWANotificationsMixin):
     def validate_back_dated_application(self):
         future_allocation = frappe.db.sql(
             """select name, from_date from `tabLeave Allocation`
-			where employee=%s and leave_type=%s and docstatus=1 and from_date > %s
-			and carry_forward=1""",
+            where employee=%s and leave_type=%s and docstatus=1 and from_date > %s
+            and carry_forward=1""",
             (self.employee, self.leave_type, self.to_date),
             as_dict=1,
         )
@@ -308,7 +310,7 @@ class LeaveApplication(Document, PWANotificationsMixin):
         if self.docstatus == 2:
             attendance = frappe.db.sql(
                 """select name from `tabAttendance` where employee = %s\
-				and (attendance_date between %s and %s) and docstatus < 2 and status in ('On Leave', 'Half Day')""",
+                and (attendance_date between %s and %s) and docstatus < 2 and status in ('On Leave', 'Half Day')""",
                 (self.employee, self.from_date, self.to_date),
                 as_dict=1,
             )
@@ -321,11 +323,11 @@ class LeaveApplication(Document, PWANotificationsMixin):
 
         last_processed_pay_slip = frappe.db.sql(
             """
-			select start_date, end_date from `tabSalary Slip`
-			where docstatus = 1 and employee = %s
-			and ((%s between start_date and end_date) or (%s between start_date and end_date))
-			order by modified desc limit 1
-		""",
+            select start_date, end_date from `tabSalary Slip`
+            where docstatus = 1 and employee = %s
+            and ((%s between start_date and end_date) or (%s between start_date and end_date))
+            order by modified desc limit 1
+        """,
             (self.employee, self.to_date, self.from_date),
         )
 
@@ -434,12 +436,12 @@ class LeaveApplication(Document, PWANotificationsMixin):
 
         for d in frappe.db.sql(
             """
-			select
-				name, leave_type, posting_date, from_date, to_date, total_leave_days, half_day_date
-			from `tabLeave Application`
-			where employee = %(employee)s and docstatus < 2 and status in ('Open', 'Approved')
-			and to_date >= %(from_date)s and from_date <= %(to_date)s
-			and name != %(name)s""",
+            select
+                name, leave_type, posting_date, from_date, to_date, total_leave_days, half_day_date
+            from `tabLeave Application`
+            where employee = %(employee)s and docstatus < 2 and status in ('Open', 'Approved')
+            and to_date >= %(from_date)s and from_date <= %(to_date)s
+            and name != %(name)s""",
             {
                 "employee": self.employee,
                 "from_date": self.from_date,
@@ -477,12 +479,12 @@ class LeaveApplication(Document, PWANotificationsMixin):
     def get_total_leaves_on_half_day(self):
         leave_count_on_half_day_date = frappe.db.sql(
             """select count(name) from `tabLeave Application`
-			where employee = %(employee)s
-			and docstatus < 2
-			and status in ('Open', 'Approved')
-			and half_day = 1
-			and half_day_date = %(half_day_date)s
-			and name != %(name)s""",
+            where employee = %(employee)s
+            and docstatus < 2
+            and status in ('Open', 'Approved')
+            and half_day = 1
+            and half_day_date = %(half_day_date)s
+            and name != %(name)s""",
             {"employee": self.employee, "half_day_date": self.half_day_date, "name": self.name},
         )[0][0]
 
@@ -559,7 +561,7 @@ class LeaveApplication(Document, PWANotificationsMixin):
     def validate_attendance(self):
         attendance = frappe.db.sql(
             """select name from `tabAttendance` where employee = %s and (attendance_date between %s and %s)
-					and status = 'Present' and docstatus = 1""",
+                    and status = 'Present' and docstatus = 1""",
             (self.employee, self.from_date, self.to_date),
         )
         if attendance:
@@ -1199,18 +1201,18 @@ def get_leave_entries(employee, leave_type, from_date, to_date):
     """Returns leave entries between from_date and to_date."""
     return frappe.db.sql(
         """
-		SELECT
-			employee, leave_type, from_date, to_date, leaves, transaction_name, transaction_type, holiday_list,
-			is_carry_forward, is_expired
-		FROM `tabLeave Ledger Entry`
-		WHERE employee=%(employee)s AND leave_type=%(leave_type)s
-			AND docstatus=1
-			AND (leaves<0
-				OR is_expired=1)
-			AND (from_date between %(from_date)s AND %(to_date)s
-				OR to_date between %(from_date)s AND %(to_date)s
-				OR (from_date < %(from_date)s AND to_date > %(to_date)s))
-	""",
+        SELECT
+            employee, leave_type, from_date, to_date, leaves, transaction_name, transaction_type, holiday_list,
+            is_carry_forward, is_expired
+        FROM `tabLeave Ledger Entry`
+        WHERE employee=%(employee)s AND leave_type=%(leave_type)s
+            AND docstatus=1
+            AND (leaves<0
+                OR is_expired=1)
+            AND (from_date between %(from_date)s AND %(to_date)s
+                OR to_date between %(from_date)s AND %(to_date)s
+                OR (from_date < %(from_date)s AND to_date > %(to_date)s))
+    """,
         {
             "from_date": from_date,
             "to_date": to_date,
@@ -1229,8 +1231,8 @@ def get_holidays(employee, from_date, to_date, holiday_list=None):
 
     holidays = frappe.db.sql(
         """select count(distinct holiday_date) from `tabHoliday` h1, `tabHoliday List` h2
-		where h1.parent = h2.name and h1.holiday_date between %s and %s
-		and h2.name = %s""",
+        where h1.parent = h2.name and h1.holiday_date between %s and %s
+        and h2.name = %s""",
         (from_date, to_date, holiday_list),
     )[0][0]
 
@@ -1282,7 +1284,7 @@ def add_department_leaves(events, start, end, employee, company):
     # department leaves
     department_employees = frappe.db.sql_list(
         """select name from tabEmployee where department=%s
-		and company=%s""",
+        and company=%s""",
         (department, company),
     )
 
@@ -1306,22 +1308,22 @@ def add_leaves(events, start, end, filter_conditions=None):
             conditions.append(match_conditions)
 
     query = """SELECT
-		docstatus,
-		name,
-		employee,
-		employee_name,
-		leave_type,
-		from_date,
-		to_date,
-		half_day,
-		status,
-		color
-	FROM `tabLeave Application`
-	WHERE
-		from_date <= %(end)s AND to_date >= %(start)s <= to_date
-		AND docstatus < 2
-		AND status in ('Approved', 'Open')
-	"""
+        docstatus,
+        name,
+        employee,
+        employee_name,
+        leave_type,
+        from_date,
+        to_date,
+        half_day,
+        status,
+        color
+    FROM `tabLeave Application`
+    WHERE
+        from_date <= %(end)s AND to_date >= %(start)s <= to_date
+        AND docstatus < 2
+        AND status in ('Approved', 'Open')
+    """
 
     if conditions:
         query += " AND " + " AND ".join(conditions)
@@ -1371,7 +1373,7 @@ def add_holidays(events, start, end, employee, company):
 
     for holiday in frappe.db.sql(
         """select name, holiday_date, description
-		from `tabHoliday` where parent=%s and holiday_date between %s and %s""",
+        from `tabHoliday` where parent=%s and holiday_date between %s and %s""",
         (applicable_holiday_list, start, end),
         as_dict=True,
     ):
@@ -1464,3 +1466,87 @@ def get_leave_approver(employee):
 
 def on_doctype_update():
     frappe.db.add_index("Leave Application", ["employee", "from_date", "to_date"])
+
+
+def Send_notification(self):
+    if self.workflow_state == 'Approved':
+        cover = self.cover  # Link to Employee
+        employee_name = self.employee_name  # Name of the one requesting leave
+
+        try:
+            cover_employee = frappe.get_doc('Employee', cover)
+        except frappe.DoesNotExistError:
+            frappe.throw(f"Employee {cover} does not exist")
+
+        # Fetch email and name of the cover employee
+        user_name = cover_employee.employee_name
+        user_email = cover_employee.user_id  # Or change to `cover_employee.preferred_email` if using that field
+
+        subject = f"Appointed by your supervisor to cover for {employee_name}"
+
+        
+
+        try:
+            frappe.sendmail(
+                recipients=[user_email],
+                subject=subject,
+                message=message,
+                now=True,
+            )
+            frappe.msgprint(f"Email sent to {user_email}")
+        except Exception as e:
+            frappe.log_error(f"Error sending email to {user_email}: {str(e)}")
+            return False
+    if self.workflow_state == 'Approved':
+        cover=self.cover
+        employee_name=self.employee_name
+        try:
+            # Get Employee document for the person covering
+            employee_doc = frappe.get_doc('Employee', cover)
+            cover_name = employee_doc.employee_name or "Colleague"
+            user_email = frappe.db.get_value('User', employee_doc.user_id, 'email')
+        except frappe.DoesNotExistError:
+            frappe.log_error(f"Cover employee not found: {cover}")
+            return False
+
+        if not user_email:
+            frappe.log_error(f"No user email found for cover: {cover}")
+            return False
+
+        
+        # Update the check to use the correct workflow state logic
+        subject = f"Appointed by your supervisor to cover for {employee_name}"
+       
+
+        # Continue building the message
+        message += f"""
+                    
+                 <div class="content">
+                    <p>Dear {user_name},</p>
+                    <p>{cover_employee.salutation} {employee_name} is applying for leave. 
+                    Kindly be informed that you will be covering their absence from {self.from_date} to {self.to_date}. 
+                    You are requested to contact them for a proper handover of duties and responsibilities.</p>
+                    <p>Best regards,</p>
+                </div>
+                    
+                <div class="footer">
+                    <p>&copy; 2025 MUGANGA SACCO. All rights reserved. </p>
+                </div>
+            </div>
+
+        </body>
+        </html>
+        """
+
+        try:
+            frappe.sendmail(
+                recipients=[user_email],
+                subject=subject,
+                message=message,
+                now=True,
+            )
+            print(f"Email sent to {user_email}")
+        except Exception as e:
+            frappe.log_error(f"Error sending email to {user_email}: {str(e)}")
+          
+            return False

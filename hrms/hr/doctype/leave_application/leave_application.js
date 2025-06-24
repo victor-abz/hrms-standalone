@@ -19,6 +19,7 @@ frappe.ui.form.on('Leave Application', {
 
   onload: function (frm) {
     // Ignore cancellation of doctype on cancel all.
+
     frm.ignore_doctypes_on_cancel_all = ['Leave Ledger Entry'];
 
     if (!frm.doc.posting_date) {
@@ -38,12 +39,32 @@ frappe.ui.form.on('Leave Application', {
         },
       });
     }
+
+    
   },
+
+
   before_workflow_action: async (frm) => {
     const workflowState = frm.doc.workflow_state;
-  
-  
-    if (
+    const cover_field = frm.doc.cover;  // this should be the employee ID
+    const employee_details = await frappe.db.get_doc('Employee', cover_field);
+
+
+    if (workflowState === "Pending Supervisor Approval") {
+        if (!cover_field || cover_field.length === 0) {
+            frappe.throw("The field for who will cover during absence is empty. Please fill it.");
+        }
+
+        // Now get employee details based on the employee ID
+
+        if (employee_details) {
+            const cover_name = employee_details.employee_name;
+            console.log("Cover person full name:", cover_name);
+        }
+    }
+
+
+    else if (
       workflowState === "Pending Supervisor Approval" ||
       workflowState === "Pending HR Approval" ||
       workflowState === "Pending DAF Approval" ||
@@ -92,8 +113,11 @@ frappe.ui.form.on('Leave Application', {
           });
         },
         primary_action_label: __('Confirm approval'),
+
       });
-              // Hide the dialog if the comment is added successfully
+
+      
+              
   
       dialog.$wrapper.find('.modal-header .close').prop('disabled', true);
   
@@ -101,6 +125,8 @@ frappe.ui.form.on('Leave Application', {
         const comment = dialog.get_value('comment');
         dialog.$wrapper.find('.modal-header .close').prop('disabled', !comment);
         primary_action_label: __('Confirm approval')
+
+      
       });
   
   
