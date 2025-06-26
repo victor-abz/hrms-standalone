@@ -46,8 +46,9 @@ frappe.ui.form.on('Leave Application', {
 
   before_workflow_action: async (frm) => {
     const workflowState = frm.doc.workflow_state;
-    const cover_field = frm.doc.cover;  // this should be the employee ID
-    const employee_details = await frappe.db.get_doc('Employee', cover_field);
+    const cover_field = frm.doc.cover;
+    // const employee_details = await frappe.db.get_doc('Employee', cover_field);
+    const employee_id = frm.doc.employee;
 
 
     if (workflowState === "Pending Supervisor Approval") {
@@ -55,12 +56,18 @@ frappe.ui.form.on('Leave Application', {
             frappe.throw("The field for who will cover during absence is empty. Please fill it.");
         }
 
+        else if ( cover_field === employee_id ){
+
+          frappe.throw("The cover during absence , can't be the same as the leave applicant")
+
+        }
+
         // Now get employee details based on the employee ID
 
-        if (employee_details) {
-            const cover_name = employee_details.employee_name;
-            console.log("Cover person full name:", cover_name);
-        }
+        // if (employee_details) {
+        //     const cover_name = employee_details.employee_name;
+        //     console.log("Cover person full name:", cover_name);
+        // }
     }
 
 

@@ -176,12 +176,12 @@
    "default": "Draft",
    "fieldname": "status",
    "fieldtype": "Select",
+   "hidden": 1,
    "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
    "options": "Draft\nPending Submission\nPending Supervisor Approval\nRejected By Supervisor\nPending HR Approval\nRejected By HR\nPending DAF Approval\nRejected By DAF\nPending DG approval\nApproved\nRejected",
-   "permlevel": 1,
-   "reqd": 1
+   "permlevel": 1
   },
   {
    "default": "Today",
@@ -256,7 +256,7 @@
    "fieldname": "cover",
    "fieldtype": "Link",
    "label": "Who Will Cover the Absence( To be assigned by Direct Supervisor)",
-   "options": "Employee"
+   "options": "User"
   },
   {
    "fieldname": "attachment_if_needed",
@@ -270,7 +270,7 @@
  "is_submittable": 1,
  "links": [],
  "max_attachments": 3,
- "modified": "2025-06-24 12:20:06.868964",
+ "modified": "2025-06-25 15:49:32.332845",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Leave Application",

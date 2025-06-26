@@ -1470,8 +1470,12 @@ def on_doctype_update():
 
 def Send_notification(self):
     if self.workflow_state == 'Approved':
-        cover = self.cover  # Link to Employee
-        employee_name = self.employee_name  # Name of the one requesting leave
+        cover_mail = self.cover  # Link to Employee
+        employee_name = self.employee_name
+        employee=self.employee
+        cover = frappe.db.get_value("Employee", {"user_id": cover_mail}, "name")
+        salutation= frappe.db.get_value("Employee",{"employee":employee},"salutation")
+        
 
         try:
             cover_employee = frappe.get_doc('Employee', cover)
@@ -1480,64 +1484,156 @@ def Send_notification(self):
 
         # Fetch email and name of the cover employee
         user_name = cover_employee.employee_name
-        user_email = cover_employee.user_id  # Or change to `cover_employee.preferred_email` if using that field
-
-        subject = f"Appointed by your supervisor to cover for {employee_name}"
-
-        
-
-        try:
-            frappe.sendmail(
-                recipients=[user_email],
-                subject=subject,
-                message=message,
-                now=True,
-            )
-            frappe.msgprint(f"Email sent to {user_email}")
-        except Exception as e:
-            frappe.log_error(f"Error sending email to {user_email}: {str(e)}")
-            return False
-    if self.workflow_state == 'Approved':
-        cover=self.cover
-        employee_name=self.employee_name
-        try:
-            # Get Employee document for the person covering
-            employee_doc = frappe.get_doc('Employee', cover)
-            cover_name = employee_doc.employee_name or "Colleague"
-            user_email = frappe.db.get_value('User', employee_doc.user_id, 'email')
-        except frappe.DoesNotExistError:
-            frappe.log_error(f"Cover employee not found: {cover}")
-            return False
-
-        if not user_email:
-            frappe.log_error(f"No user email found for cover: {cover}")
-            return False
-
-        
+        user_email = cover_employee.user_id  
+    
+      
         # Update the check to use the correct workflow state logic
-        subject = f"Appointed by your supervisor to cover for {employee_name}"
-       
+        subject = f"You have been appointed to cover for {employee_name}"
+
+
+            # Start building the HTML message
+        message = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Appointment cover notification  </title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                }}
+                
+                img {{
+                    max-width:30%;
+                    display:flex;
+                    justify-content:left;
+                }}
+
+                .container {{
+                    width: 100%;
+                    padding: 20px;
+                    background-color: #F15C24;
+                    max-width: 700px;
+                    margin: 0 auto;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                }}
+
+                .header {{
+                    text-align: center;
+                    padding: 20px; 
+                    background-color:#ffffff;
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
+                }}
+
+                .header h1 {{
+                    margin: 0;
+                    font-size: 24px;
+                }}
+
+                .content {{
+                    padding: 20px;
+                    color: #333333;
+                }}
+
+                .content p {{
+                    font-size: 16px;
+                    line-height: 1.5;
+                }}
+                .content h3{{
+                    
+                    padding:5px;
+                    text-decoration:underline; 
+                    justify-content:center; 
+                }}
+
+                .content table {{
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }}
+
+                .content table th,
+                .content table td {{
+                    border: 1px solid #dddddd;
+                    padding: 8px;
+                    text-align: left;
+                }}
+
+                .content table th {{
+                    background-color: #f2f2f2;
+                }}
+
+                .footer {{
+                    text-align: center;
+                    padding: 10px;
+                    background-color: #287C3D;
+                    color: #ffffff;
+                    border-bottom-left-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                    font-size: 14px;
+                }}
+                
+                p{{
+                    text-align: justify;
+                    color:#ffffff;
+                }}
+
+                .footer p {{
+                    color: #ffffff;
+                    text-decoration: none;
+                    text-align: center;
+                }}
+            </style>
+        </head>
+
+        <body>
+
+            <div class="container">
+                <!-- Header section -->
+                <div class="header">
+                    <img src="https://mugangasacco.rw/wp-content/uploads/2021/02/Muganga-Sacco-Logo-Final-01.png" alt="Company Logo"/>
+                    <h1>Meeting Invitation</h1>
+                </div>
+                <!-- Content section -->
+                <div class="content">
+        """
+
+        # Add the attendees' names to the message
+
+         
 
         # Continue building the message
         message += f"""
-                    
-                 <div class="content">
                     <p>Dear {user_name},</p>
-                    <p>{cover_employee.salutation} {employee_name} is applying for leave. 
+                    <p>{salutation} {employee_name} is applying for leave. 
                     Kindly be informed that you will be covering their absence from {self.from_date} to {self.to_date}. 
                     You are requested to contact them for a proper handover of duties and responsibilities.</p>
+                   
+        """
+
+
+        # Close the table and HTML message
+        message += """     
                     <p>Best regards,</p>
                 </div>
-                    
+
+                <!-- Footer section -->
                 <div class="footer">
-                    <p>&copy; 2025 MUGANGA SACCO. All rights reserved. </p>
+                 <p>&copy; 2025 MugangaSACCO. All rights reserved.</p> 
                 </div>
             </div>
 
         </body>
+
         </html>
         """
-
         try:
             frappe.sendmail(
                 recipients=[user_email],
@@ -1550,3 +1646,6 @@ def Send_notification(self):
             frappe.log_error(f"Error sending email to {user_email}: {str(e)}")
           
             return False
+        
+        
+       
